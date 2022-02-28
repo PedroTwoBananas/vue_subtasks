@@ -2,18 +2,22 @@
    <div>
       <span>{{ todo.name }}</span>
       <button>Изменить</button>
-      <button @click="deleteTodo">Удалить</button>
+      <button @click="showDelete">Удалить</button>
    </div>
 </template>
 
 <script>
 export default {
    props: {
-      todo: {}
+      todo: {},
+      show: Boolean
    },
    methods: {
-      deleteTodo() {
-         this.$emit('deleteTodo', this.todo);
+      // deleteTodo() {
+      //    this.$emit('deleteTodo', this.todo);
+      // },
+      showDelete() {
+         this.$emit('showDelete', this.show);
       }
    }
 }
