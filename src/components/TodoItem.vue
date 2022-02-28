@@ -1,5 +1,5 @@
 <template>
-   <TaskHeader :todo="todo.name"/>
+   <TaskHeader @deleteTodo="deleteTodo" :todo="todo"/>
    <TaskList :tasks="todo.tasks"/>
 </template>
 
@@ -11,6 +11,12 @@ import TaskList from "@/components/TaskList";
 export default {
    props: {
       todo: {}
+   },
+
+   methods: {
+      deleteTodo(todo) {
+         this.$emit('deleteTodo', todo)
+      }
    },
 
    components: {

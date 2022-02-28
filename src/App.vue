@@ -1,7 +1,7 @@
 <template>
    <button @click="showModal">Добавить тему</button>
    <AddTodoWindow @addTodo="addTodo" @close="closeModal" :show="show"/>
-   <TodoList :todos="todos"/>
+   <TodoList @deleteTodo="deleteTodo" :todos="todos"/>
 </template>
 
 <script>
@@ -24,6 +24,9 @@ export default {
       },
       addTodo(todo) {
         this.todos.push(todo);
+      },
+      deleteTodo(todo) {
+         this.todos = this.todos.filter(key => key.id !== todo.id)
       }
    },
 

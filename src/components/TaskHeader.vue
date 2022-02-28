@@ -1,14 +1,21 @@
 <template>
    <div>
-      <span>{{todo}}</span>
+      <span>{{ todo.name }}</span>
+      <button>Изменить</button>
+      <button @click="deleteTodo">Удалить</button>
    </div>
 </template>
 
 <script>
 export default {
-props: {
-   todo: String
-}
+   props: {
+      todo: {}
+   },
+   methods: {
+      deleteTodo() {
+         this.$emit('deleteTodo', this.todo);
+      }
+   }
 }
 </script>
 
