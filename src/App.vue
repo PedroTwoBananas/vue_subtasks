@@ -1,30 +1,67 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+   <TodoList :todos="todos"/>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import TodoList from "@/components/TodoList";
+
+export default {
+   data() {
+      return {
+         todos: [
+            {
+               id: Date.now(),
+               name: 'Понедельник',
+               tasks: [
+                  {
+                     id: 1,
+                     isDone: false,
+                     text: 'Отжуманя'
+                  },
+                  {
+                     id: 2,
+                     isDone: false,
+                     text: 'Прес качат'
+                  },
+                  {
+                     id: 3,
+                     isDone: false,
+                     text: 'Атдыхат'
+                  },
+               ]
+            },
+            {
+               id: Date.now(),
+               name: 'Вторник',
+               tasks: [
+                  {
+                     id: 4,
+                     isDone: false,
+                     text: 'Ауе'
+                  },
+                  {
+                     id: 5,
+                     isDone: false,
+                     text: 'Жизнь'
+                  },
+                  {
+                     id: 6,
+                     isDone: false,
+                     text: 'Ворам'
+                  },
+               ]
+            }
+         ]
+      }
+   },
+
+   components: {
+      TodoList
+   }
 }
 
-nav {
-  padding: 30px;
-}
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+<style scoped>
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
