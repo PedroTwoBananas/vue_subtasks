@@ -1,7 +1,7 @@
 <template>
    <div>
       <span>{{ todo.name }}</span>
-      <button>Изменить</button>
+      <button @click="changeTodo">Изменить</button>
       <button @click="showDelete">Удалить</button>
    </div>
 </template>
@@ -18,6 +18,9 @@ export default {
       // },
       showDelete() {
          this.$emit('showDelete', this.show);
+      },
+      changeTodo() {
+         this.$router.push(`/task/${this.todo.id}`);
       }
    }
 }

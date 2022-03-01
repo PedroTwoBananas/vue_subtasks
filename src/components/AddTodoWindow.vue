@@ -19,7 +19,7 @@
 </template>
 
 <script>
-
+import uniqid from 'uniqid';
 export default {
 
    props: {
@@ -48,7 +48,7 @@ export default {
       },
 
       addTask() {
-         this.task.id = Date.now() + 1000;
+         this.task.id = uniqid();
          this.task.isDone = false;
          this.todo.tasks.push(this.task)
          this.task = {
@@ -57,9 +57,9 @@ export default {
       },
 
       addTodo() {
-         this.todo.id = Date.now();
+         this.todo.id = uniqid();
          this.$emit('addTodo', this.todo);
-
+         this.todo.isEdited = false;
          this.todo = {
             name: '',
             tasks: [],
