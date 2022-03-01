@@ -1,6 +1,6 @@
 <template>
    <div>
-      <input type="checkbox">
+      <input @change="checkTask" type="checkbox">
       <span>{{ task.text }}</span>
       <button>Удалить задачу</button>
       <button>Изменить задачу</button>
@@ -12,6 +12,11 @@ export default {
    props: {
       task: {}
    },
+   methods: {
+      checkTask() {
+         this.$emit('checkTask', this.task)
+      }
+   }
 }
 </script>
 

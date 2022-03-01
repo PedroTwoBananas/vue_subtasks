@@ -1,6 +1,6 @@
 <template>
    <EditedTaskHeader :todo="todo"/>
-   <EditedTaskList :tasks="todo.tasks"/>
+   <EditedTaskList @checkTask="checkTask" :tasks="todo.tasks"/>
 </template>
 
 <script>
@@ -15,6 +15,16 @@ export default {
    data() {
       return {
          todo: this.todos.find(item => item.id === this.$route.params.id)
+      }
+   },
+   methods: {
+      checkTask(task) {
+         this.todo.tasks.map(key => {
+            if(key.id === task.id) {
+               key.isDone = !key.isDone
+            }
+            return key;
+         })
       }
    },
    components: {
