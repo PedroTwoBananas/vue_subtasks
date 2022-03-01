@@ -1,5 +1,5 @@
 <template>
-   <EditedTaskItem @checkTask="checkTask" :key="task.id" v-for="task in tasks" :task="task"/>
+   <EditedTaskItem @deleteTask="deleteTask" @checkTask="checkTask" :key="task.id" v-for="task in tasks" :task="task"/>
 </template>
 
 <script>
@@ -12,6 +12,9 @@ props: {
    methods: {
       checkTask(task) {
          this.$emit('checkTask', task)
+      },
+      deleteTask(task) {
+         this.$emit('deleteTask', task)
       }
    },
    components: {

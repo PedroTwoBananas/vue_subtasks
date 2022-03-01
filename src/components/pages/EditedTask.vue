@@ -1,6 +1,6 @@
 <template>
    <EditedTaskHeader :todo="todo"/>
-   <EditedTaskList @checkTask="checkTask" :tasks="todo.tasks"/>
+   <EditedTaskList @deleteTask="deleteTask" @checkTask="checkTask" :tasks="todo.tasks"/>
 </template>
 
 <script>
@@ -25,6 +25,9 @@ export default {
             }
             return key;
          })
+      },
+      deleteTask(task) {
+         this.todo.tasks = this.todo.tasks.filter(key => key.id !== task.id)
       }
    },
    components: {
