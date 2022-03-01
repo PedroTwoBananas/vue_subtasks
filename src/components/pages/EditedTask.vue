@@ -1,6 +1,8 @@
 <template>
    <EditedTaskHeader :todo="todo"/>
-   <EditedTaskList @deleteTask="deleteTask" @checkTask="checkTask" :tasks="todo.tasks"/>
+   <EditedTaskList
+       :tasks="todo.tasks"
+   />
 </template>
 
 <script>
@@ -14,24 +16,17 @@ export default {
    },
    data() {
       return {
-         todo: this.todos.find(item => item.id === this.$route.params.id)
+         todo: this.todos.find(item => item.id === this.$route.params.id),
+         tempTodo: {
+            tasks: []
+         }
       }
    },
    methods: {
-      checkTask(task) {
-         this.todo.tasks.map(key => {
-            if(key.id === task.id) {
-               key.isDone = !key.isDone
-            }
-            return key;
-         })
-      },
-      deleteTask(task) {
-         this.todo.tasks = this.todo.tasks.filter(key => key.id !== task.id)
-      }
    },
    components: {
-      EditedTaskHeader, EditedTaskList
+      EditedTaskHeader,
+      EditedTaskList
    }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
    <router-view
        @addTodo="addTodo"
+       @changeTodo="changeTodo"
        @deleteTodo="deleteTodo"
        :todos="todos"
    >
@@ -23,6 +24,9 @@ export default {
       deleteTodo(todo) {
          this.todos = this.todos.filter(key => key.id !== todo.id)
       },
+      changeTodo(todo) {
+         this.$router.push(`/task/${todo.id}`);
+      }
    }
 }
 </script>

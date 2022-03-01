@@ -1,5 +1,6 @@
 <template>
    <TodoItem
+       @changeTodo="changeTodo"
        @deleteTodo="deleteTodo"
        :key="todo.id"
        v-for="todo in todos"
@@ -19,6 +20,9 @@ export default {
       deleteTodo(todo) {
          this.$emit('deleteTodo', todo);
       },
+      changeTodo(todo) {
+         this.$emit('changeTodo', todo);
+      }
    },
    components: {
       TodoItem

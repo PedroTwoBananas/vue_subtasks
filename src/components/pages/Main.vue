@@ -1,7 +1,7 @@
 <template>
    <button @click="showModal">Добавить тему</button>
    <AddTodoWindow @addTodo="addTodo" @close="closeModal" :show="show"/>
-   <TodoList @deleteTodo="deleteTodo" :todos="todos"/>
+   <TodoList @changeTodo="changeTodo" @deleteTodo="deleteTodo" :todos="todos"/>
 </template>
 
 <script>
@@ -30,6 +30,9 @@ export default {
       deleteTodo(todo) {
          this.$emit('deleteTodo',todo);
       },
+      changeTodo(todo) {
+         this.$emit('changeTodo',todo);
+      }
    },
 
    components: {

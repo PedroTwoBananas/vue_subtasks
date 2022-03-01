@@ -1,10 +1,13 @@
 <template>
    <div>
-      <input @change="checkTask" type="checkbox">
+      <input type="checkbox">
       <span>{{ task.text }}</span>
-      <button @click="showDelete">Удалить задачу</button>
+      <button>Удалить задачу</button>
       <button>Изменить задачу</button>
-      <EditDeleteTodoWindow @deleteTask="deleteTask" @close="closeDelete" :task="task" :show="show"/>
+      <EditDeleteTodoWindow
+          :task="task"
+          :show="show"
+      />
    </div>
 </template>
 
@@ -19,24 +22,10 @@ export default {
       task: {}
    },
    data() {
-      return{
-         show:false
+      return {
+         show: false,
       }
    },
-   methods: {
-      showDelete() {
-         this.show = !this.show;
-      },
-      closeDelete(show) {
-         this.show = !show;
-      },
-      checkTask() {
-         this.$emit('checkTask', this.task)
-      },
-      deleteTask(task) {
-         this.$emit('deleteTask', task)
-      }
-   }
 }
 </script>
 

@@ -1,6 +1,7 @@
 <template>
    <TaskHeader
        @showDelete="showDelete"
+       @changeTodo="changeTodo"
        :show="show"
        :todo="todo"
    />
@@ -40,6 +41,9 @@ export default {
       deleteTodo(todo) {
          this.$emit('deleteTodo', todo)
       },
+      changeTodo(todo) {
+         this.$emit('changeTodo', todo)
+      }
    },
 
    components: {

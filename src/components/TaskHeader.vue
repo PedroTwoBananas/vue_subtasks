@@ -13,14 +13,11 @@ export default {
       show: Boolean
    },
    methods: {
-      // deleteTodo() {
-      //    this.$emit('deleteTodo', this.todo);
-      // },
       showDelete() {
          this.$emit('showDelete', this.show);
       },
       changeTodo() {
-         this.$router.push(`/task/${this.todo.id}`);
+         this.$emit('changeTodo', this.todo);
       }
    }
 }
