@@ -9,11 +9,13 @@
 </template>
 
 <script>
-import TodoItem from '@/components/TodoItem'
+import TodoItem from '@/components/pageTodosMain/TodoItem'
 
 export default {
    props: {
-      todos: [],
+      todos: {
+         type: Array,
+      },
    },
    methods: {
       deleteTodo(todo) {

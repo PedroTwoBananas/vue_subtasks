@@ -1,16 +1,19 @@
 <template>
    <button @click="showModal">Добавить тему</button>
    <AddTodoWindow @addTodo="addTodo" @close="closeModal" :show="show" />
-   <TodoList @changeTodo="changeTodo" @deleteTodo="deleteTodo" :todos="todos" />
+   <MainList @changeTodo="changeTodo" @deleteTodo="deleteTodo" :todos="todos" />
 </template>
 
 <script>
-import TodoList from '@/components/TodoList'
-import AddTodoWindow from '@/components/AddTodoWindow'
+import AddTodoWindow from '@/components/pageTodosMain/AddTodoWindow'
+import MainList from '@/components/pageTodosMain/MainList'
 
 export default {
    props: {
-      todos: [],
+      todos: {
+         type: Array,
+         default: () => [],
+      },
    },
    data() {
       return {
@@ -36,7 +39,7 @@ export default {
    },
 
    components: {
-      TodoList,
+      MainList,
       AddTodoWindow,
    },
 }

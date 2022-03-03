@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Main from '@/components/pages/Main'
-import EditedTask from '@/components/pages/EditedTask'
+import Main from '@/components/pages/TodosMain'
+import EditedTask from '@/components/pages/TaskEditPage'
 
 const routes = [
    {

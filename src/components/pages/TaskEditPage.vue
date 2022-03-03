@@ -1,11 +1,11 @@
 <template>
-   <EditedTaskHeader :todo="todo" />
-   <EditedTaskList :tasks="todo.tasks" />
+   <EditHeader :todo="todo" />
+   <EditList :tasks="todo.tasks" />
 </template>
 
 <script>
-import EditedTaskList from '@/components/EditedTaskList'
-import EditedTaskHeader from '@/components/EditedTaskHeader'
+import EditList from '@/components/pageEditTask/EditList'
+import EditHeader from '@/components/pageEditTask/EditHeader'
 
 export default {
    props: {
@@ -21,8 +21,8 @@ export default {
    },
    methods: {},
    components: {
-      EditedTaskHeader,
-      EditedTaskList,
+      EditHeader,
+      EditList,
    },
 }
 </script>

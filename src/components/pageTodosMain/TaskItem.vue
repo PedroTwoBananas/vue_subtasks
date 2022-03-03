@@ -7,7 +7,10 @@
 <script>
 export default {
    props: {
-      task: {},
+      task: {
+         type: Object,
+         required: true,
+      },
    },
 }
 </script>

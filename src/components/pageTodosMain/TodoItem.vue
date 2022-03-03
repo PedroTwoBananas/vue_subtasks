@@ -15,13 +15,16 @@
 </template>
 
 <script>
-import TaskHeader from '@/components/TaskHeader'
-import TaskList from '@/components/TaskList'
-import DeleteTodoWindow from '@/components/DeleteTodoWindow'
+import TaskHeader from '@/components/pageTodosMain/TaskHeader'
+import TaskList from '@/components/pageTodosMain/TaskList'
+import DeleteTodoWindow from '@/components/pageTodosMain/DeleteTodoWindow'
 
 export default {
    props: {
-      todo: {},
+      todo: {
+         type: Object,
+         required: true,
+      },
    },
 
    data() {

@@ -9,7 +9,10 @@
 <script>
 export default {
    props: {
-      todo: {},
+      todo: {
+         type: Object,
+         required: true,
+      },
       show: Boolean,
    },
    methods: {

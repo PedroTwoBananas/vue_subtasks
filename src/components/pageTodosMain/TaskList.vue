@@ -3,11 +3,13 @@
 </template>
 
 <script>
-import TaskItem from '@/components/TaskItem'
+import TaskItem from '@/components/pageTodosMain/TaskItem'
 
 export default {
    props: {
-      tasks: [],
+      tasks: {
+         type: Array,
+      },
    },
    components: {
       TaskItem,

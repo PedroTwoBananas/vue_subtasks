@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import EditDeleteTodoWindow from '@/components/EditDeleteTodoWindow'
+import EditDeleteTodoWindow from '@/components/pageEditTask/EditDeleteTodoWindow'
 
 export default {
    components: {
