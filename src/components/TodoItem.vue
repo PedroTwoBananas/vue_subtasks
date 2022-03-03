@@ -1,33 +1,32 @@
 <template>
    <TaskHeader
-       @showDelete="showDelete"
-       @changeTodo="changeTodo"
-       :show="show"
-       :todo="todo"
+      @showDelete="showDelete"
+      @changeTodo="changeTodo"
+      :show="show"
+      :todo="todo"
    />
    <DeleteTodoWindow
-       @deleteTodo="deleteTodo"
-       :todo="todo"
-       @close="closeDelete"
-       :show="show"
+      @deleteTodo="deleteTodo"
+      :todo="todo"
+      @close="closeDelete"
+      :show="show"
    />
-   <TaskList :tasks="todo.tasks"/>
+   <TaskList :tasks="todo.tasks" />
 </template>
 
 <script>
-
-import TaskHeader from "@/components/TaskHeader";
-import TaskList from "@/components/TaskList";
-import DeleteTodoWindow from "@/components/DeleteTodoWindow";
+import TaskHeader from '@/components/TaskHeader'
+import TaskList from '@/components/TaskList'
+import DeleteTodoWindow from '@/components/DeleteTodoWindow'
 
 export default {
    props: {
-      todo: {}
+      todo: {},
    },
 
    data() {
       return {
-         show: false
+         show: false,
       }
    },
 
@@ -36,22 +35,22 @@ export default {
          this.show = !show
       },
       closeDelete(show) {
-         this.show = !show;
+         this.show = !show
       },
       deleteTodo(todo) {
          this.$emit('deleteTodo', todo)
       },
       changeTodo(todo) {
          this.$emit('changeTodo', todo)
-      }
+      },
    },
 
    components: {
-      TaskHeader, TaskList, DeleteTodoWindow
-   }
+      TaskHeader,
+      TaskList,
+      DeleteTodoWindow,
+   },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

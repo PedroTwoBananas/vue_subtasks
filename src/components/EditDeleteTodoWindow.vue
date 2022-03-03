@@ -11,22 +11,20 @@
 <script>
 export default {
    props: {
-      task: {
-
-      },
+      task: {},
       show: {
          type: Boolean,
-         default: false
-      }
+         default: false,
+      },
    },
    methods: {
       closeDelete() {
          this.$emit('close', this.show)
       },
       deleteTask() {
-         this.$emit('deleteTask', this.task);
-      }
-   }
+         this.$emit('deleteTask', this.task)
+      },
+   },
 }
 </script>
 
@@ -36,7 +34,7 @@ export default {
    bottom: 0;
    left: 0;
    right: 0;
-   background: rgba(0, 0, 0, .5);
+   background: rgba(0, 0, 0, 0.5);
    position: fixed;
    display: flex;
 }

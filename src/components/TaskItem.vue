@@ -1,17 +1,15 @@
 <template>
    <div>
-      <span>{{task.text}}</span>
+      <span>{{ task.text }}</span>
    </div>
 </template>
 
 <script>
 export default {
    props: {
-      task: {}
-   }
+      task: {},
+   },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

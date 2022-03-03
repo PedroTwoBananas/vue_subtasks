@@ -11,22 +11,20 @@
 <script>
 export default {
    props: {
-      todo: {
-
-      },
+      todo: {},
       show: {
          type: Boolean,
-         default: false
-      }
+         default: false,
+      },
    },
    methods: {
       closeDelete() {
          this.$emit('close', this.show)
       },
       deleteTodo() {
-         this.$emit('deleteTodo', this.todo);
-      }
-   }
+         this.$emit('deleteTodo', this.todo)
+      },
+   },
 }
 </script>
 
@@ -36,7 +34,7 @@ export default {
    bottom: 0;
    left: 0;
    right: 0;
-   background: rgba(0, 0, 0, .5);
+   background: rgba(0, 0, 0, 0.5);
    position: fixed;
    display: flex;
 }

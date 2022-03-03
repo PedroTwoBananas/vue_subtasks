@@ -1,20 +1,18 @@
 <template>
-   <TaskItem :key="task.id" v-for="task in tasks" :task="task"/>
+   <TaskItem :key="task.id" v-for="task in tasks" :task="task" />
 </template>
 
 <script>
-import TaskItem from "@/components/TaskItem";
+import TaskItem from '@/components/TaskItem'
 
 export default {
    props: {
-      tasks: []
+      tasks: [],
    },
    components: {
-      TaskItem
-   }
+      TaskItem,
+   },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

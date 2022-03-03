@@ -1,25 +1,22 @@
 <template>
    <div>
-      <input type="checkbox">
+      <input type="checkbox" />
       <span>{{ task.text }}</span>
       <button>Удалить задачу</button>
       <button>Изменить задачу</button>
-      <EditDeleteTodoWindow
-          :task="task"
-          :show="show"
-      />
+      <EditDeleteTodoWindow :task="task" :show="show" />
    </div>
 </template>
 
 <script>
-import EditDeleteTodoWindow from "@/components/EditDeleteTodoWindow";
+import EditDeleteTodoWindow from '@/components/EditDeleteTodoWindow'
 
 export default {
    components: {
-      EditDeleteTodoWindow
+      EditDeleteTodoWindow,
    },
    props: {
-      task: {}
+      task: {},
    },
    data() {
       return {
@@ -29,6 +26,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,6 +1,6 @@
 <template>
    <div>
-      <span>{{todo.name}}</span>
+      <span>{{ todo.name }}</span>
       <button>Сохранить</button>
       <button>Удалить</button>
    </div>
@@ -9,11 +9,9 @@
 <script>
 export default {
    props: {
-      todo: {}
+      todo: {},
    },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

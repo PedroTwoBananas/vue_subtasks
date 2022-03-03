@@ -1,14 +1,11 @@
 <template>
-   <EditedTaskHeader :todo="todo"/>
-   <EditedTaskList
-       :tasks="todo.tasks"
-   />
+   <EditedTaskHeader :todo="todo" />
+   <EditedTaskList :tasks="todo.tasks" />
 </template>
 
 <script>
-
-import EditedTaskList from "@/components/EditedTaskList";
-import EditedTaskHeader from "@/components/EditedTaskHeader";
+import EditedTaskList from '@/components/EditedTaskList'
+import EditedTaskHeader from '@/components/EditedTaskHeader'
 
 export default {
    props: {
@@ -16,21 +13,18 @@ export default {
    },
    data() {
       return {
-         todo: this.todos.find(item => item.id === this.$route.params.id),
+         todo: this.todos.find((item) => item.id === this.$route.params.id),
          tempTodo: {
-            tasks: []
-         }
+            tasks: [],
+         },
       }
    },
-   methods: {
-   },
+   methods: {},
    components: {
       EditedTaskHeader,
-      EditedTaskList
-   }
+      EditedTaskList,
+   },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

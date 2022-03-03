@@ -10,19 +10,17 @@
 export default {
    props: {
       todo: {},
-      show: Boolean
+      show: Boolean,
    },
    methods: {
       showDelete() {
-         this.$emit('showDelete', this.show);
+         this.$emit('showDelete', this.show)
       },
       changeTodo() {
-         this.$emit('changeTodo', this.todo);
-      }
-   }
+         this.$emit('changeTodo', this.todo)
+      },
+   },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

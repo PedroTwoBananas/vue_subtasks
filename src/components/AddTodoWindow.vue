@@ -2,15 +2,11 @@
    <div class="modal" v-if="show">
       <div class="modal-content">
          <input
-             v-model="todo.name"
-             type="text"
-             placeholder="Введите название темы"
-         >
-         <input
-             v-model="task.text"
-             type="text"
-             placeholder="Введите задачу"
-         >
+            v-model="todo.name"
+            type="text"
+            placeholder="Введите название темы"
+         />
+         <input v-model="task.text" type="text" placeholder="Введите задачу" />
          <button @click="addTask">Добавить задачу</button>
          <button @click="addTodo">Добавить тему</button>
          <button @click="closeModal">Закрыть</button>
@@ -19,14 +15,13 @@
 </template>
 
 <script>
-import uniqid from 'uniqid';
+import uniqid from 'uniqid'
 export default {
-
    props: {
       show: {
          type: Boolean,
          default: false,
-      }
+      },
    },
 
    data() {
@@ -37,49 +32,45 @@ export default {
          },
          task: {
             text: '',
-         }
+         },
       }
    },
 
    methods: {
-
       closeModal() {
          this.$emit('close', this.show)
       },
 
       addTask() {
-         this.task.id = uniqid();
-         this.task.isDone = false;
+         this.task.id = uniqid()
+         this.task.isDone = false
          this.todo.tasks.push(this.task)
          this.task = {
-            text: ''
-         };
+            text: '',
+         }
       },
 
       addTodo() {
-         this.todo.id = uniqid();
-         this.$emit('addTodo', this.todo);
-         this.todo.isEdited = false;
+         this.todo.id = uniqid()
+         this.$emit('addTodo', this.todo)
+         this.todo.isEdited = false
          this.todo = {
             name: '',
             tasks: [],
-         };
-         this.$emit('close', this.show);
-      }
-   }
-
+         }
+         this.$emit('close', this.show)
+      },
+   },
 }
-
 </script>
 
 <style scoped>
-
 .modal {
    top: 0;
    bottom: 0;
    left: 0;
    right: 0;
-   background: rgba(0, 0, 0, .5);
+   background: rgba(0, 0, 0, 0.5);
    position: fixed;
    display: flex;
 }
@@ -93,5 +84,4 @@ export default {
    display: flex;
    flex-direction: column;
 }
-
 </style>
