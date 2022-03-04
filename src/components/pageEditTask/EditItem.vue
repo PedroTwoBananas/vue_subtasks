@@ -2,9 +2,13 @@
    <div>
       <input type="checkbox" />
       <span>{{ task.text }}</span>
-      <button>Удалить задачу</button>
+      <button @click="showDeleteModal">Удалить задачу</button>
       <button>Изменить задачу</button>
-      <EditDeleteTodoWindow />
+      <EditDeleteTodoWindow
+         @closeDeleteModal="closeDeleteModal"
+         :show="show"
+         :task="task"
+      />
    </div>
 </template>
 
@@ -16,6 +20,21 @@ export default {
       task: {
          type: Object,
          required: true,
+      },
+   },
+
+   data() {
+      return {
+         show: false,
+      }
+   },
+
+   methods: {
+      showDeleteModal() {
+         this.show = !this.show
+      },
+      closeDeleteModal(show) {
+         this.show = !show
       },
    },
    components: {

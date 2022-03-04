@@ -10,9 +10,7 @@ import EditHeader from '@/components/pageEditTask/EditHeader'
 export default {
    computed: {
       getStoreTodo() {
-         return this.$store.state.todos.find(
-            (todo) => todo.id === this.$route.params.id
-         )
+         return this.$store.getters.storeTodo
       },
    },
 

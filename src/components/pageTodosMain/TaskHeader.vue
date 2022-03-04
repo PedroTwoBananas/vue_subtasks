@@ -23,6 +23,7 @@ export default {
          this.$emit('showDeleteModal', this.show)
       },
       clickToChangeTodo() {
+         this.$store.dispatch('selectTodo', this.todo)
          this.$router.push({ name: 'editPage', params: { id: this.todo.id } })
       },
    },

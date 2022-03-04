@@ -1,7 +1,7 @@
 <template>
    <div>
       <span>{{ todo.name }}</span>
-      <button>Сохранить</button>
+      <button @click="clickToConfirmChanges">Сохранить</button>
       <button>Удалить</button>
    </div>
 </template>
@@ -12,6 +12,13 @@ export default {
       todo: {
          type: Object,
          required: true,
+      },
+   },
+
+   methods: {
+      clickToConfirmChanges() {
+         this.$store.dispatch('confirmTodo', this.todo)
+         this.$router.push({ name: 'home' })
       },
    },
 }
