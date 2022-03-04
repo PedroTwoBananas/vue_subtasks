@@ -13,7 +13,7 @@ export default {
 }
 </script>
 <style>
-span {
+* {
    font-family: 'Comic Sans MS';
 }
 </style>

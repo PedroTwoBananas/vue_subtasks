@@ -31,6 +31,10 @@ export const store = createStore({
          state.todo = {}
       },
 
+      ADD_TASK: (state, payload) => {
+         state.todo.tasks.push(payload)
+      },
+
       DELETE_TASK: (state, payload) => {
          state.todo.tasks = state.todo.tasks.filter(
             (key) => key.id !== payload.id
@@ -65,6 +69,10 @@ export const store = createStore({
 
       confirmTodo: (context, payload) => {
          context.commit('CONFIRM_TODO', payload)
+      },
+
+      addTask: (context, payload) => {
+         context.commit('ADD_TASK', payload)
       },
 
       deleteTask: (context, payload) => {
