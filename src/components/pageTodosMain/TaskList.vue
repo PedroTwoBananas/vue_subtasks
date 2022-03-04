@@ -1,16 +1,12 @@
 <template>
-   <TaskItem :key="task.id" v-for="task in tasks" :task="task" />
+   <TaskItem />
 </template>
 
 <script>
 import TaskItem from '@/components/pageTodosMain/TaskItem'
 
 export default {
-   props: {
-      tasks: {
-         type: Array,
-      },
-   },
+
    components: {
       TaskItem,
    },

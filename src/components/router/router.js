@@ -1,15 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Main from '@/components/pages/TodosMain'
-import EditedTask from '@/components/pages/TaskEditPage'
+import TodosMain from '@/components/pages/TodosMain'
+import TaskEditPage from '@/components/pages/TaskEditPage'
 
 const routes = [
    {
+      name: 'home',
       path: `/`,
-      component: Main,
+      component: TodosMain,
    },
    {
+      name: 'editPage',
       path: '/task/:id',
-      component: EditedTask,
+      component: TaskEditPage,
    },
 ]
 

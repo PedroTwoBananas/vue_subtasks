@@ -1,31 +1,15 @@
 <template>
-   <div class="modal" v-if="show">
+   <div class="modal">
       <div class="modal-content">
          <span>Вы уверены?</span>
-         <button @click="closeDelete">Нет</button>
-         <button @click="deleteTodo">Да</button>
+         <button>Нет</button>
+         <button>Да</button>
       </div>
    </div>
 </template>
 
 <script>
-export default {
-   props: {
-      todo: {},
-      show: {
-         type: Boolean,
-         default: false,
-      },
-   },
-   methods: {
-      closeDelete() {
-         this.$emit('close', this.show)
-      },
-      deleteTodo() {
-         this.$emit('deleteTodo', this.todo)
-      },
-   },
-}
+export default {}
 </script>
 
 <style scoped>

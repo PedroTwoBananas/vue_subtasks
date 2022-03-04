@@ -1,18 +1,11 @@
 <template>
    <div>
-      <span>{{ task.text }}</span>
+      <span></span>
    </div>
 </template>
 
 <script>
-export default {
-   props: {
-      task: {
-         type: Object,
-         required: true,
-      },
-   },
-}
+export default {}
 </script>
 
 <style scoped></style>

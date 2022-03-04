@@ -1,29 +1,13 @@
 <template>
    <div>
-      <span>{{ todo.name }}</span>
-      <button @click="changeTodo">Изменить</button>
-      <button @click="showDelete">Удалить</button>
+      <span></span>
+      <button><span>Изменить</span></button>
+      <button><span>Удалить</span></button>
    </div>
 </template>
 
 <script>
-export default {
-   props: {
-      todo: {
-         type: Object,
-         required: true,
-      },
-      show: Boolean,
-   },
-   methods: {
-      showDelete() {
-         this.$emit('showDelete', this.show)
-      },
-      changeTodo() {
-         this.$emit('changeTodo', this.todo)
-      },
-   },
-}
+export default {}
 </script>
 
 <style scoped></style>
