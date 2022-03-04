@@ -36,6 +36,15 @@ export const store = createStore({
             (key) => key.id !== payload.id
          )
       },
+
+      MARK_TASK: (state, payload) => {
+         state.todo.tasks = state.todo.tasks.map((key) => {
+            if (key.id === payload.id) {
+               key.isDone = true
+            }
+            return key
+         })
+      },
    },
    getters: {
       storeTodos: (state) => state.todos,
@@ -60,6 +69,10 @@ export const store = createStore({
 
       deleteTask: (context, payload) => {
          context.commit('DELETE_TASK', payload)
+      },
+
+      markTask: (context, payload) => {
+         context.commit('MARK_TASK', payload)
       },
    },
 })

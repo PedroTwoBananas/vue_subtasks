@@ -1,6 +1,6 @@
 <template>
    <div>
-      <input type="checkbox" />
+      <input v-if="!task.isDone" type="checkbox" @change="checkTask" />
       <span>{{ task.text }}</span>
       <button @click="showDeleteModal">Удалить задачу</button>
       <button>Изменить задачу</button>
@@ -35,6 +35,9 @@ export default {
       },
       closeDeleteModal(show) {
          this.show = !show
+      },
+      checkTask() {
+         this.$store.dispatch('markTask', JSON.parse(JSON.stringify(this.task)))
       },
    },
    components: {
