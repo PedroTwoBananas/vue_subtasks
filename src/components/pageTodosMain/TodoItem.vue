@@ -1,27 +1,45 @@
 <template>
    <div class="main-todo">
-      <TaskHeader :todo='todo' />
-<!--      <DeleteTodoWindow />-->
-      <TaskList :tasks='todo.tasks'/>
+      <TaskHeader
+         @showDeleteModal="showDeleteModal"
+         :show="show"
+         :todo="todo"
+      />
+      <DeleteTodoWindow :todo="todo" @closeDeleteModal="closeDeleteModal" :show="show" />
+      <TaskList :tasks="todo.tasks" />
    </div>
 </template>
 
 <script>
+import DeleteTodoWindow from '@/components/pageTodosMain/DeleteTodoWindow'
 import TaskHeader from '@/components/pageTodosMain/TaskHeader'
 import TaskList from '@/components/pageTodosMain/TaskList'
 
-
 export default {
+   data() {
+      return {
+         show: false,
+      }
+   },
    props: {
       todo: {
          type: Object,
-         required: true
-      }
+         required: true,
+      },
+   },
+
+   methods: {
+      showDeleteModal(show) {
+         this.show = !show
+      },
+      closeDeleteModal(show) {
+         this.show = !show
+      },
    },
    components: {
       TaskHeader,
       TaskList,
-
+      DeleteTodoWindow,
    },
 }
 </script>

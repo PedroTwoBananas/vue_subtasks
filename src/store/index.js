@@ -15,6 +15,9 @@ export const store = createStore({
          }
          state.todos.push(newTodo)
       },
+      DELETE_TODO: (state, payload) => {
+         state.todos = state.todos.filter((key) => key.id !== payload.id)
+      },
    },
    getters: {
       storeTodos: (state) => state.todos,
@@ -22,6 +25,9 @@ export const store = createStore({
    actions: {
       addTodo: (context, payload) => {
          context.commit('ADD_TODO', payload)
+      },
+      deleteTodo: (context, payload) => {
+         context.commit('DELETE_TODO', payload)
       },
    },
 })

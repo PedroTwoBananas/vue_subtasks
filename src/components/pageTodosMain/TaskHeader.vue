@@ -1,8 +1,8 @@
 <template>
    <div>
-      <span>{{todo.name}}</span>
+      <span>{{ todo.name }}</span>
       <button><span>Изменить</span></button>
-      <button><span>Удалить</span></button>
+      <button @click="showDeleteModal"><span>Удалить</span></button>
    </div>
 </template>
 
@@ -12,6 +12,15 @@ export default {
       todo: {
          type: Object,
          required: true,
+      },
+      show: {
+         type: Boolean,
+         required: true
+      }
+   },
+   methods: {
+      showDeleteModal() {
+         this.$emit('showDeleteModal', this.show)
       },
    },
 }
