@@ -1,15 +1,15 @@
 <template>
-   <div class="modal">
+   <div class="modal" v-if="show">
       <div class="modal-content">
          <input
-            v-model="todo.name"
             type="text"
+            v-model="todo.name"
             placeholder="Введите название темы"
          />
-         <input v-model="task.text" type="text" placeholder="Введите задачу" />
-         <button >Добавить задачу</button>
-         <button >Добавить тему</button>
-         <button >Закрыть</button>
+         <input type="text" v-model="task.text" placeholder="Введите задачу" />
+         <button @click="addTask">Добавить задачу</button>
+         <button @click="addTodo">Добавить тему</button>
+         <button @click="clickToCloseModal">Закрыть</button>
       </div>
    </div>
 </template>
@@ -17,7 +17,48 @@
 <script>
 import uniqid from 'uniqid'
 export default {
+   data() {
+      return {
+         todo: {
+            name: '',
+            tasks: [],
+         },
+         task: {
+            text: '',
+         },
+      }
+   },
+   props: {
+      show: {
+         type: Boolean,
+         required: true,
+      },
+   },
 
+   methods: {
+      clickToCloseModal() {
+         this.$emit('closeModal', this.show)
+      },
+
+      addTask() {
+         this.task.id = uniqid()
+         this.task.isDone = false
+         this.todo.tasks.push(this.task)
+         this.task = {
+            text: '',
+         }
+      },
+
+      addTodo() {
+         this.todo.id = uniqid()
+         this.$store.dispatch('addTodo', this.todo)
+         this.todo = {
+            name: '',
+            tasks: [],
+         }
+         this.$emit('closeModal', this.show)
+      },
+   },
 }
 </script>
 

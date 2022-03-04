@@ -1,12 +1,10 @@
 <template>
    <div class="main-wrapper">
-      <button class="add-button" @click="showModal"><span>Добавить тему</span></button>
-      <AddTodoWindow @addTodo="addTodo" @close="closeModal" :show="show" />
-      <MainList
-         @changeTodo="changeTodo"
-         @deleteTodo="deleteTodo"
-         :todos="todos"
-      />
+      <button @click="showAddModal" class="add-button">
+         <span>Добавить тему</span>
+      </button>
+      <AddTodoWindow @closeModal="closeAddModal" :show="show" />
+      <MainList />
    </div>
 </template>
 
@@ -15,35 +13,20 @@ import AddTodoWindow from '@/components/pageTodosMain/AddTodoWindow'
 import MainList from '@/components/pageTodosMain/MainList'
 
 export default {
-   props: {
-      todos: {
-         type: Array,
-         default: () => [],
-      },
-   },
    data() {
       return {
          show: false,
       }
    },
+
    methods: {
-      showModal() {
-         this.show = true
+      showAddModal() {
+         this.show = !this.show
       },
-      closeModal(show) {
+      closeAddModal(show) {
          this.show = !show
       },
-      addTodo(todo) {
-         this.$emit('addTodo', todo)
-      },
-      deleteTodo(todo) {
-         this.$emit('deleteTodo', todo)
-      },
-      changeTodo(todo) {
-         this.$emit('changeTodo', todo)
-      },
    },
-
    components: {
       MainList,
       AddTodoWindow,

@@ -1,21 +1,27 @@
 <template>
    <div class="main-todo">
-      <TaskHeader />
-      <DeleteTodoWindow />
-      <TaskList />
+      <TaskHeader :todo='todo' />
+<!--      <DeleteTodoWindow />-->
+      <TaskList :tasks='todo.tasks'/>
    </div>
 </template>
 
 <script>
 import TaskHeader from '@/components/pageTodosMain/TaskHeader'
 import TaskList from '@/components/pageTodosMain/TaskList'
-import DeleteTodoWindow from '@/components/pageTodosMain/DeleteTodoWindow'
+
 
 export default {
+   props: {
+      todo: {
+         type: Object,
+         required: true
+      }
+   },
    components: {
       TaskHeader,
       TaskList,
-      DeleteTodoWindow,
+
    },
 }
 </script>

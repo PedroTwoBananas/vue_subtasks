@@ -6,6 +6,22 @@ export const store = createStore({
          todos: [],
       }
    },
-   mutations: {},
-   getters: {},
+   mutations: {
+      ADD_TODO: (state, payload) => {
+         const newTodo = {
+            id: payload.id,
+            name: payload.name,
+            tasks: payload.tasks,
+         }
+         state.todos.push(newTodo)
+      },
+   },
+   getters: {
+      storeTodos: (state) => state.todos,
+   },
+   actions: {
+      addTodo: (context, payload) => {
+         context.commit('ADD_TODO', payload)
+      },
+   },
 })

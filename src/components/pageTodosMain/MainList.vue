@@ -1,6 +1,6 @@
 <template>
    <div class="main-list">
-      <TodoItem />
+      <TodoItem :key="todo.id" v-for="todo in this.todos" :todo="todo" />
    </div>
 </template>
 
@@ -8,6 +8,11 @@
 import TodoItem from '@/components/pageTodosMain/TodoItem'
 
 export default {
+   computed: {
+      todos() {
+         return this.$store.state.todos
+      },
+   },
    components: {
       TodoItem,
    },

@@ -3,9 +3,15 @@
 </template>
 
 <script>
-export default {}
-</script>
+export default {
 
+   computed: {
+      storeTodos() {
+         return this.$store.getters.storeTodos
+      },
+   },
+}
+</script>
 <style>
 span {
    font-family: 'Comic Sans MS';
