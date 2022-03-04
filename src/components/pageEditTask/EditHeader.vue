@@ -1,6 +1,6 @@
 <template>
    <div>
-      <span></span>
+      <span>{{ todo.name }}</span>
       <button>Сохранить</button>
       <button>Удалить</button>
    </div>
@@ -8,7 +8,12 @@
 
 <script>
 export default {
-
+   props: {
+      todo: {
+         type: Object,
+         required: true,
+      },
+   },
 }
 </script>
 

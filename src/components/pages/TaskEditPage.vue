@@ -1,6 +1,6 @@
 <template>
-   <EditHeader :todo="todo" />
-   <EditList :tasks="todo.tasks" />
+   <EditHeader :todo="getStoreTodo" />
+   <EditList :tasks="getStoreTodo.tasks" />
 </template>
 
 <script>
@@ -8,18 +8,14 @@ import EditList from '@/components/pageEditTask/EditList'
 import EditHeader from '@/components/pageEditTask/EditHeader'
 
 export default {
-   props: {
-      todos: [],
+   computed: {
+      getStoreTodo() {
+         return this.$store.state.todos.find(
+            (todo) => todo.id === this.$route.params.id
+         )
+      },
    },
-   data() {
-      return {
-         todo: this.todos.find((item) => item.id === this.$route.params.id),
-         tempTodo: {
-            tasks: [],
-         },
-      }
-   },
-   methods: {},
+
    components: {
       EditHeader,
       EditList,

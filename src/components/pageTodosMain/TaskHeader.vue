@@ -1,7 +1,7 @@
 <template>
    <div>
       <span>{{ todo.name }}</span>
-      <button><span>Изменить</span></button>
+      <button @click="clickToChangeTodo"><span>Изменить</span></button>
       <button @click="showDeleteModal"><span>Удалить</span></button>
    </div>
 </template>
@@ -15,12 +15,15 @@ export default {
       },
       show: {
          type: Boolean,
-         required: true
-      }
+         required: true,
+      },
    },
    methods: {
       showDeleteModal() {
          this.$emit('showDeleteModal', this.show)
+      },
+      clickToChangeTodo() {
+         this.$router.push({ name: 'editPage', params: { id: this.todo.id } })
       },
    },
 }
