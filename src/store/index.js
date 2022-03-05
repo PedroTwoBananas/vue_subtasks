@@ -31,6 +31,11 @@ export const store = createStore({
          state.todo = {}
       },
 
+      CANSEL_EDITION: (state, payload) => {
+         const todo = state.todos.find((todo) => todo.id === payload.id)
+         state.todo = JSON.parse(JSON.stringify(todo))
+      },
+
       ADD_TASK: (state, payload) => {
          state.todo.tasks.push(payload)
       },
@@ -69,6 +74,10 @@ export const store = createStore({
 
       confirmTodo: (context, payload) => {
          context.commit('CONFIRM_TODO', payload)
+      },
+
+      canselEdition: (context, payload) => {
+         context.commit('CANSEL_EDITION', payload)
       },
 
       addTask: (context, payload) => {

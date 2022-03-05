@@ -1,7 +1,10 @@
 <template>
    <div>
       <div>
-         <span>{{ todo.name }}</span> <button><span>Назад</span></button>
+         <span>{{ todo.name }}</span>
+         <button @click="clickToCanselEdition">
+            <span>Отмена редактирования</span>
+         </button>
       </div>
       <div>
          <input type="text" placeholder="Введите задачу" v-model="task.text" />
@@ -39,13 +42,20 @@ export default {
          this.$router.push({ name: 'home' })
       },
 
+      clickToCanselEdition() {
+         this.$store.dispatch(
+            'canselEdition',
+            JSON.parse(JSON.stringify(this.todo))
+         )
+      },
+
       clickToAddTask() {
          const task = {
             id: uniqid(),
             isDone: false,
             text: this.task.text,
          }
-         this.$store.dispatch('addTask', JSON.parse(JSON.stringify(task)))
+         this.$store.dispatch('addTask', task)
          this.task = {
             text: '',
          }
