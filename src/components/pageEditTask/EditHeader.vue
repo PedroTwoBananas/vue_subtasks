@@ -5,6 +5,9 @@
          <button @click="clickToCanselEdition">
             <span>Отмена редактирования</span>
          </button>
+         <button @click="clickToRevertEdition">
+            <span>Вернуть редактирования</span>
+         </button>
       </div>
       <div>
          <input type="text" placeholder="Введите задачу" v-model="task.text" />
@@ -47,6 +50,10 @@ export default {
             'canselEdition',
             JSON.parse(JSON.stringify(this.todo))
          )
+      },
+
+      clickToRevertEdition() {
+         this.$store.dispatch('revertEdition')
       },
 
       clickToAddTask() {

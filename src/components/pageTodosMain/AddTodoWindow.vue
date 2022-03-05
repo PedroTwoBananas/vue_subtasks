@@ -51,11 +51,14 @@ export default {
 
       addTodo() {
          this.todo.id = uniqid()
+
          this.$store.dispatch('addTodo', this.todo)
+
          this.todo = {
             name: '',
             tasks: [],
          }
+
          this.$emit('closeModal', this.show)
       },
    },

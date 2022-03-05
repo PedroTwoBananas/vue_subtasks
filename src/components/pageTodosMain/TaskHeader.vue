@@ -27,6 +27,7 @@ export default {
             'selectTodo',
             JSON.parse(JSON.stringify(this.todo))
          )
+
          this.$router.push({ name: 'editPage', params: { id: this.todo.id } })
       },
    },

@@ -5,6 +5,7 @@ export const store = createStore({
       return {
          todos: [],
          todo: {},
+         revertTodo: {},
       }
    },
    mutations: {
@@ -29,11 +30,17 @@ export const store = createStore({
          const todoIndex = state.todos.findIndex((t) => t.id === payload.id)
          state.todos[todoIndex] = payload
          state.todo = {}
+         state.revertTodo = {}
       },
 
       CANSEL_EDITION: (state, payload) => {
          const todo = state.todos.find((todo) => todo.id === payload.id)
+         state.revertTodo = payload
          state.todo = JSON.parse(JSON.stringify(todo))
+      },
+
+      REVERT_EDITION: (state) => {
+         state.todo = JSON.parse(JSON.stringify(state.revertTodo))
       },
 
       ADD_TASK: (state, payload) => {
@@ -58,6 +65,7 @@ export const store = createStore({
    getters: {
       storeTodos: (state) => state.todos,
       storeTodo: (state) => state.todo,
+      storeRevertTodo: (state) => state.revertTodo,
    },
    actions: {
       addTodo: (context, payload) => {
@@ -78,6 +86,10 @@ export const store = createStore({
 
       canselEdition: (context, payload) => {
          context.commit('CANSEL_EDITION', payload)
+      },
+
+      revertEdition: (context) => {
+         context.commit('REVERT_EDITION')
       },
 
       addTask: (context, payload) => {

@@ -12,6 +12,9 @@ export default {
       getStoreTodo() {
          return this.$store.getters.storeTodo
       },
+      getStoreRevertTodo() {
+         return this.$store.getters.storeRevertTodo
+      }
    },
 
    components: {

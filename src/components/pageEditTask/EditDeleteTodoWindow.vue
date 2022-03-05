@@ -25,8 +25,13 @@ export default {
       closeDeleteModal() {
          this.$emit('closeDeleteModal', this.show)
       },
+
       clickToDeleteTask() {
-         this.$store.dispatch('deleteTask', JSON.parse(JSON.stringify(this.task)))
+         this.$store.dispatch(
+            'deleteTask',
+            JSON.parse(JSON.stringify(this.task))
+         )
+
          this.$emit('closeDeleteModal', this.show)
       },
    },
