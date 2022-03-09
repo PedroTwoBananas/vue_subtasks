@@ -1,10 +1,11 @@
 <template>
-   <EditItem :key='task.id' v-for='task in tasks' :task='task'/>
+   <EditItemBlock :key='task.id' v-for='task in tasks' :task='task'/>
 </template>
 
 <script>
-import EditItem from '@/components/pageEditTask/EditItem'
 
+
+import EditItemBlock from '@/components/pageEditTask/EditItemBlock'
 export default {
    props: {
       tasks: {
@@ -12,7 +13,8 @@ export default {
       },
    },
    components: {
-      EditItem,
+      EditItemBlock,
+
    },
 }
 </script>

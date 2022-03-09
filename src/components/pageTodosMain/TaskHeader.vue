@@ -28,6 +28,8 @@ export default {
             JSON.parse(JSON.stringify(this.todo))
          )
 
+         this.$store.dispatch('setTodo')
+
          this.$router.push({ name: 'editPage', params: { id: this.todo.id } })
       },
    },

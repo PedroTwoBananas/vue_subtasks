@@ -32,6 +32,10 @@ export default {
             JSON.parse(JSON.stringify(this.task))
          )
 
+         this.$store.dispatch('setTodo')
+
+         this.$store.dispatch('setRevertTodo')
+
          this.$emit('closeDeleteModal', this.show)
       },
    },

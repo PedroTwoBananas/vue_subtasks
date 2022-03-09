@@ -1,9 +1,9 @@
 <template>
-   <div>
+   <div v-if='!isEdit'>
       <input v-if="!task.isDone" type="checkbox" @change="checkTask" />
       <span>{{ task.text }}</span>
       <button @click="showDeleteModal">Удалить задачу</button>
-      <button>Изменить задачу</button>
+      <button @click='changeTask'>Изменить задачу</button>
       <EditDeleteTodoWindow
          @closeDeleteModal="closeDeleteModal"
          :show="show"
@@ -21,6 +21,10 @@ export default {
          type: Object,
          required: true,
       },
+      isEdit: {
+         type: Boolean,
+         required: true
+      }
    },
 
    data() {
@@ -38,7 +42,13 @@ export default {
       },
       checkTask() {
          this.$store.dispatch('markTask', JSON.parse(JSON.stringify(this.task)))
+         this.$store.dispatch('setTodo')
+         this.$store.dispatch('setRevertTodo')
       },
+
+      changeTask() {
+         this.$emit('changeTask', this.isEdit)
+      }
    },
    components: {
       EditDeleteTodoWindow,

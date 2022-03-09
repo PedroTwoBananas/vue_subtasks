@@ -42,6 +42,7 @@ export default {
    methods: {
       clickToConfirmChanges() {
          this.$store.dispatch('confirmTodo', this.todo)
+         this.$store.dispatch('setTodos')
          this.$router.push({ name: 'home' })
       },
 
@@ -50,10 +51,17 @@ export default {
             'canselEdition',
             JSON.parse(JSON.stringify(this.todo))
          )
+         this.$store.dispatch('setTodo')
+
+         this.$store.dispatch('setRevertTodo')
       },
 
       clickToRevertEdition() {
          this.$store.dispatch('revertEdition')
+
+         this.$store.dispatch('setTodo')
+
+         this.$store.dispatch('setRevertTodo')
       },
 
       clickToAddTask() {
@@ -63,6 +71,11 @@ export default {
             text: this.task.text,
          }
          this.$store.dispatch('addTask', task)
+
+         this.$store.dispatch('setTodo')
+
+         this.$store.dispatch('setRevertTodo')
+
          this.task = {
             text: '',
          }

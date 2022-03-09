@@ -9,7 +9,17 @@ export default {
          return this.$store.getters.storeTodos
       },
    },
-   mounted() {},
+
+   mounted() {
+      const todos = JSON.parse(localStorage.getItem('todos'))
+      this.$store.dispatch('getTodos', todos)
+
+      const todo = JSON.parse(localStorage.getItem('todo'))
+      this.$store.dispatch('getTodo', todo)
+
+      const revertTodo = JSON.parse(localStorage.getItem('revertTodo'))
+      this.$store.dispatch('getRevertTodo', revertTodo)
+   },
 }
 </script>
 <style>

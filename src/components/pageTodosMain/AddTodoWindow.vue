@@ -54,6 +54,8 @@ export default {
 
          this.$store.dispatch('addTodo', this.todo)
 
+         this.$store.dispatch('setTodos')
+
          this.todo = {
             name: '',
             tasks: [],
