@@ -20,9 +20,4 @@ export default {
 </script>
 
 <style scoped>
-.main-list {
-   padding: 16px;
-   border: 2px solid coral;
-   border-radius: 15px;
-}
 </style>

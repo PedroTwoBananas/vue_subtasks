@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class='item-block'>
       <EditItem @changeTask='changeTask' :isEdit='isEdit' :task="task" />
       <EditInputItem @confirmTask ='editTask' :isEdit='isEdit' :task="task" />
    </div>
@@ -35,4 +35,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.item-block {
+   margin-bottom: 10px;
+}
+</style>

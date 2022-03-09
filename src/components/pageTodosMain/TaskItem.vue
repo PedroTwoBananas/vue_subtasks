@@ -1,5 +1,6 @@
 <template>
-   <div>
+   <div class='item'>
+      <input disabled v-if='!task.isDone' type='checkbox' >
       <span>{{ task.text }}</span>
    </div>
 </template>
@@ -15,4 +16,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.item {
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+}
+</style>

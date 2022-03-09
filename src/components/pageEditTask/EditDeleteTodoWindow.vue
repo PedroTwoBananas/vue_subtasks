@@ -2,8 +2,10 @@
    <div v-if="show" class="modal">
       <div class="modal-content">
          <span>Вы уверены?</span>
-         <button @click="closeDeleteModal">Нет</button>
-         <button @click="clickToDeleteTask">Да</button>
+         <div class='button-block'>
+            <button @click="closeDeleteModal">Нет</button>
+            <button @click="clickToDeleteTask">Да</button>
+         </div>
       </div>
    </div>
 </template>
@@ -60,5 +62,13 @@ export default {
    min-width: 300px;
    display: flex;
    flex-direction: column;
+   align-items: center;
+}
+
+.button-block {
+   margin-top: 10px;
+   display: flex;
+   flex-direction: row;
+   gap: 20px;
 }
 </style>

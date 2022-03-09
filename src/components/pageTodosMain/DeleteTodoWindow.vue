@@ -1,9 +1,11 @@
 <template>
    <div class="modal" v-if="show">
       <div class="modal-content">
-         <span>Вы уверены?</span>
-         <button @click="closeDeleteModal">Нет</button>
-         <button @click="clickToDeleteTodo">Да</button>
+         <span class="warning-text">Вы уверены?</span>
+         <div class="button-block">
+            <button class="button" @click="closeDeleteModal">Нет</button>
+            <button class="button" @click="clickToDeleteTodo">Да</button>
+         </div>
       </div>
    </div>
 </template>
@@ -26,7 +28,10 @@ export default {
       },
       clickToDeleteTodo() {
          this.$store.dispatch('deleteTodo', this.todo)
-         localStorage.setItem('todos', JSON.stringify(this.$store.getters.storeTodos))
+         localStorage.setItem(
+            'todos',
+            JSON.stringify(this.$store.getters.storeTodos)
+         )
       },
    },
 }
@@ -51,5 +56,20 @@ export default {
    min-width: 300px;
    display: flex;
    flex-direction: column;
+   align-items: center;
+}
+
+.button-block {
+   margin-top: 10px;
+   display: flex;
+   flex-direction: row;
+   gap: 20px;
+}
+
+.button {
+   background-color: coral;
+   margin-bottom: 10px;
+   width: 200px;
+   border: 2px solid coral;
 }
 </style>

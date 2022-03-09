@@ -26,4 +26,5 @@ export default {
 * {
    font-family: 'Comic Sans MS';
 }
+
 </style>

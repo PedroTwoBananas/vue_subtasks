@@ -1,5 +1,5 @@
 <template>
-   <div v-if="isEdit">
+   <div class='edit-item' v-if="isEdit">
       <input type="text" v-model="editedText" />
       <button @click="editTask"><span>Изменить</span></button>
    </div>
@@ -35,9 +35,17 @@ export default {
          this.$store.dispatch('setTodo')
          this.$store.dispatch('setRevertTodo')
          this.$emit('confirmTask', this.isEdit)
+
+         this.editedText = ''
       },
    },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.edit-item {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+</style>

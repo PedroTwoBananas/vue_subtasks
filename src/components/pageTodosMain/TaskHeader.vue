@@ -1,8 +1,10 @@
 <template>
-   <div>
+   <div class='header-block'>
       <span>{{ todo.name }}</span>
-      <button @click="clickToChangeTodo"><span>Изменить</span></button>
-      <button @click="showDeleteModal"><span>Удалить</span></button>
+      <div class='button-block'>
+         <button class='button' @click="clickToChangeTodo"><span>Изменить</span></button>
+         <button class='button' @click="showDeleteModal"><span>Удалить</span></button>
+      </div>
    </div>
 </template>
 
@@ -35,4 +37,25 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.header-block {
+   display: flex;
+   flex-direction: row;
+   border-bottom: 2px solid coral;
+   margin-bottom: 10px;
+}
+
+.button-block {
+   display: flex;
+   flex-direction: row;
+   gap: 20px;
+   margin-left: 20px;
+}
+
+.button {
+   background-color: coral;
+   margin-bottom: 10px;
+   width: 200px;
+   border: 2px solid coral;
+}
+</style>

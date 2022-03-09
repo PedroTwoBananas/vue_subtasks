@@ -1,9 +1,13 @@
 <template>
-   <div v-if='!isEdit'>
-      <input v-if="!task.isDone" type="checkbox" @change="checkTask" />
-      <span>{{ task.text }}</span>
-      <button @click="showDeleteModal">Удалить задачу</button>
-      <button @click='changeTask'>Изменить задачу</button>
+   <div class="item-block" v-if="!isEdit">
+      <div class='item-text-block'>
+         <input v-if="!task.isDone" type="checkbox" @change="checkTask" />
+         <span>{{ task.text }}</span>
+      </div>
+      <div class='item-button-block'>
+         <button @click="showDeleteModal">Удалить задачу</button>
+         <button @click="changeTask">Изменить задачу</button>
+      </div>
       <EditDeleteTodoWindow
          @closeDeleteModal="closeDeleteModal"
          :show="show"
@@ -24,8 +28,8 @@ export default {
       },
       isEdit: {
          type: Boolean,
-         required: true
-      }
+         required: true,
+      },
    },
 
    data() {
@@ -49,7 +53,7 @@ export default {
 
       changeTask() {
          this.$emit('changeTask', this.isEdit)
-      }
+      },
    },
    components: {
       EditDeleteTodoWindow,
@@ -57,4 +61,22 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.item-block {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.item-text-block {
+   display: flex;
+   flex-direction: row;
+   gap: 20px;
+}
+
+.item-button-block {
+   display: flex;
+   flex-direction: row;
+   gap: 20px;
+}
+</style>
