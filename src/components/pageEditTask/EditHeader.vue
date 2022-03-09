@@ -22,6 +22,7 @@
 
 <script>
 import uniqid from 'uniqid'
+import { clone } from '@/components/functions/clone'
 
 export default {
    props: {
@@ -47,10 +48,7 @@ export default {
       },
 
       clickToCanselEdition() {
-         this.$store.dispatch(
-            'canselEdition',
-            JSON.parse(JSON.stringify(this.todo))
-         )
+         this.$store.dispatch('canselEdition', clone(this.todo))
          this.$store.dispatch('setTodo')
 
          this.$store.dispatch('setRevertTodo')

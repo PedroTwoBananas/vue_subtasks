@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { clone } from '@/components/functions/clone'
+
 export default {
    props: {
       task: {
@@ -27,10 +29,7 @@ export default {
       },
 
       clickToDeleteTask() {
-         this.$store.dispatch(
-            'deleteTask',
-            JSON.parse(JSON.stringify(this.task))
-         )
+         this.$store.dispatch('deleteTask', clone(this.task))
 
          this.$store.dispatch('setTodo')
 

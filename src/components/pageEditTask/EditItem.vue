@@ -14,6 +14,7 @@
 
 <script>
 import EditDeleteTodoWindow from '@/components/pageEditTask/EditDeleteTodoWindow'
+import { clone } from '@/components/functions/clone'
 
 export default {
    props: {
@@ -41,7 +42,7 @@ export default {
          this.show = !show
       },
       checkTask() {
-         this.$store.dispatch('markTask', JSON.parse(JSON.stringify(this.task)))
+         this.$store.dispatch('markTask', clone(this.task))
          this.$store.dispatch('setTodo')
          this.$store.dispatch('setRevertTodo')
       },

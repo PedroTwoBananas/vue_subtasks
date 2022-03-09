@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { clone } from '@/components/functions/clone'
+
 export default {
    props: {
       todo: {
@@ -23,10 +25,7 @@ export default {
          this.$emit('showDeleteModal', this.show)
       },
       clickToChangeTodo() {
-         this.$store.dispatch(
-            'selectTodo',
-            JSON.parse(JSON.stringify(this.todo))
-         )
+         this.$store.dispatch('selectTodo', clone(this.todo))
 
          this.$store.dispatch('setTodo')
 
