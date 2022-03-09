@@ -15,7 +15,6 @@
                placeholder="Введите задачу"
             />
          </div>
-
          <ul class="add-list">
             <li class="add-item" :key="task.id" v-for="task in todo.tasks">
                {{ task.text }}
@@ -45,6 +44,7 @@ export default {
          },
       }
    },
+
    props: {
       show: {
          type: Boolean,
@@ -59,8 +59,11 @@ export default {
 
       addTask() {
          this.task.id = uniqid()
+
          this.task.isDone = false
+
          this.todo.tasks.push(this.task)
+
          this.task = {
             text: '',
          }

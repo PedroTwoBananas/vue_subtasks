@@ -1,16 +1,18 @@
 <template>
-   <div v-if="showWarning" class="modal">
+   <div v-if="showCansel" class="modal">
       <div class="modal-content">
          <span>Вы уверены?</span>
          <div class="button-block">
-            <button @click="closeWarningModal">Нет</button>
-            <button @click="clickToDeleteTodo">Да</button>
+            <button @click="closeCanselModal">Нет</button>
+            <button @click="clickToDeleteTask">Да</button>
          </div>
       </div>
    </div>
 </template>
 
 <script>
+import { clone } from '@/components/functions/clone'
+
 export default {
    props: {
       todo: {
@@ -18,26 +20,25 @@ export default {
          required: true,
       },
 
-      showWarning: {
+      showCansel: {
          type: Boolean,
          required: true,
       },
    },
+
    methods: {
-      closeWarningModal() {
-         this.$emit('closeWarningModal', this.showWarning)
+      closeCanselModal() {
+         this.$emit('closeCanselModal', this.showCansel)
       },
 
-      clickToDeleteTodo() {
-         this.$store.dispatch('deleteTodo', this.todo)
+      clickToDeleteTask() {
+         this.$store.dispatch('canselEdition', clone(this.todo))
 
-         this.$store.dispatch('setTodos')
+         this.$store.dispatch('setTodo')
 
-         localStorage.removeItem('todo')
+         this.$store.dispatch('setRevertTodo')
 
-         localStorage.removeItem('revertTodo')
-
-         this.$router.push({ name: 'home' })
+         this.$emit('closeCanselModal', this.showCansel)
       },
    },
 }

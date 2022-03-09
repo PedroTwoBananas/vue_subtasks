@@ -1,43 +1,44 @@
 <template>
-   <div v-if="showWarning" class="modal">
+   <div v-if="show" class="modal">
       <div class="modal-content">
          <span>Вы уверены?</span>
-         <div class="button-block">
-            <button @click="closeWarningModal">Нет</button>
-            <button @click="clickToDeleteTodo">Да</button>
+         <div class='button-block'>
+            <button @click="closeDeleteModal">Нет</button>
+            <button @click="clickToDeleteTask">Да</button>
          </div>
       </div>
    </div>
 </template>
 
 <script>
+import { clone } from '@/components/functions/clone'
+
 export default {
    props: {
-      todo: {
+      task: {
          type: Object,
          required: true,
       },
 
-      showWarning: {
+      show: {
          type: Boolean,
          required: true,
       },
+
    },
    methods: {
-      closeWarningModal() {
-         this.$emit('closeWarningModal', this.showWarning)
+      closeDeleteModal() {
+         this.$emit('closeDeleteModal', this.show)
       },
 
-      clickToDeleteTodo() {
-         this.$store.dispatch('deleteTodo', this.todo)
+      clickToDeleteTask() {
+         this.$store.dispatch('deleteTask', clone(this.task))
 
-         this.$store.dispatch('setTodos')
+         this.$store.dispatch('setTodo')
 
-         localStorage.removeItem('todo')
+         this.$store.dispatch('setRevertTodo')
 
-         localStorage.removeItem('revertTodo')
-
-         this.$router.push({ name: 'home' })
+         this.$emit('closeDeleteModal', this.show)
       },
    },
 }

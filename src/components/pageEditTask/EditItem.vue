@@ -8,7 +8,7 @@
          <button @click="showDeleteModal">Удалить задачу</button>
          <button @click="changeTask">Изменить задачу</button>
       </div>
-      <EditDeleteTodoWindow
+      <EditDeleteTaskWindow
          @closeDeleteModal="closeDeleteModal"
          :show="show"
          :task="task"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import EditDeleteTodoWindow from '@/components/pageEditTask/EditDeleteTodoWindow'
+import EditDeleteTaskWindow from '@/components/pageEditTask/EditDeleteTaskWindow'
 import { clone } from '@/components/functions/clone'
 
 export default {
@@ -56,7 +56,7 @@ export default {
       },
    },
    components: {
-      EditDeleteTodoWindow,
+      EditDeleteTaskWindow,
    },
 }
 </script>

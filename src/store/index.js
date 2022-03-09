@@ -55,8 +55,6 @@ export const store = createStore({
          state.todos[todoIndex] = payload
          state.todo = {}
          state.revertTodo = {}
-         localStorage.removeItem('todo')
-         localStorage.removeItem('revertTodo')
       },
 
       SET_REVERT_TODO: (state) => {
