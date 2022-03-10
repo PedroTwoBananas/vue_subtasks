@@ -15,11 +15,7 @@ export const store = createStore({
       },
 
       GET_TODOS: (state, payload) => {
-         if (payload === null) {
-            state.todos = []
-         } else {
-            state.todos = payload
-         }
+         payload === null ? (state.todos = []) : (state.todos = payload)
       },
 
       ADD_TODO: (state, payload) => {
@@ -44,11 +40,7 @@ export const store = createStore({
       },
 
       GET_TODO: (state, payload) => {
-         if (payload === null) {
-            state.todo = {}
-         } else {
-            state.todo = payload
-         }
+         payload === null ? (state.todo = {}) : (state.todo = payload)
       },
 
       CONFIRM_TODO: (state, payload) => {
