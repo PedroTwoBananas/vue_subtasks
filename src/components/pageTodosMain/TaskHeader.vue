@@ -31,6 +31,8 @@ export default {
 
          this.$store.dispatch('setTodo')
 
+         this.$store.dispatch('setRevertTodo')
+
          this.$router.push({ name: 'editPage', params: { id: this.todo.id } })
       },
    },

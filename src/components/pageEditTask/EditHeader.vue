@@ -39,12 +39,10 @@ import uniqid from 'uniqid'
 // import { clone } from '@/components/functions/clone'
 import EditDeleteTodoWindow from '@/components/pageEditTask/EditDeleteTodoWindow'
 import EditCanselChangesWindow from '@/components/pageEditTask/EditCanselChangesWindow'
-// import EditCanselChangesWindow from '@/components/pageEditTask/EditCanselChangesWindow'
 
 export default {
    components: {
       EditCanselChangesWindow,
-      // EditCanselChangesWindow,
       EditDeleteTodoWindow },
    props: {
       todo: {
@@ -111,11 +109,13 @@ export default {
       // },
 
       clickToRevertEdition() {
+
          this.$store.dispatch('revertEdition')
+
+         this.$store.dispatch('setRevertTodo')
 
          this.$store.dispatch('setTodo')
 
-         this.$store.dispatch('setRevertTodo')
       },
 
       clickToAddTask() {

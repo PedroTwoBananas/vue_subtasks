@@ -5,7 +5,7 @@ export const store = createStore({
       return {
          todos: [],
          todo: {},
-         revertTodo: {},
+         revertTodo: null,
       }
    },
    mutations: {
@@ -58,11 +58,17 @@ export const store = createStore({
       },
 
       SET_REVERT_TODO: (state) => {
+         if (state.revertTodo === null) {
+            state.revertTodo = state.todo
+         }
+
          localStorage.setItem('revertTodo', JSON.stringify(state.revertTodo))
       },
 
       GET_REVERT_TODO: (state, payload) => {
-         state.revertTodo = payload
+         if (payload !== null) {
+            state.revertTodo = payload
+         }
       },
 
       CANSEL_EDITION: (state, payload) => {
