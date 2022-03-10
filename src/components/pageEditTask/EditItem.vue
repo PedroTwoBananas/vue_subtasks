@@ -1,23 +1,25 @@
 <template>
    <div class="item-block" v-if="!isEdit">
-      <div class='item-text-block'>
+      <div class="item-text-block">
          <input v-if="!task.isDone" type="checkbox" @change="checkTask" />
          <span>{{ task.text }}</span>
       </div>
-      <div class='item-button-block'>
+      <div class="item-button-block">
          <button @click="showDeleteModal">Удалить задачу</button>
          <button @click="changeTask">Изменить задачу</button>
       </div>
-      <EditDeleteTaskWindow
-         @closeDeleteModal="closeDeleteModal"
-         :show="show"
-         :task="task"
-      />
+
+      <teleport to="body" v-if="show">
+         <WarningModal
+            @cancel="closeDeleteModal"
+            @confirm="clickToDeleteTask"
+         />
+      </teleport>
    </div>
 </template>
 
 <script>
-import EditDeleteTaskWindow from '@/components/pageEditTask/EditDeleteTaskWindow'
+import WarningModal from '@/components/WarningModal'
 import { clone } from '@/components/functions/clone'
 
 export default {
@@ -26,6 +28,7 @@ export default {
          type: Object,
          required: true,
       },
+
       isEdit: {
          type: Boolean,
          required: true,
@@ -42,12 +45,26 @@ export default {
       showDeleteModal() {
          this.show = !this.show
       },
-      closeDeleteModal(show) {
-         this.show = !show
+
+      closeDeleteModal() {
+         this.show = !this.show
       },
+
+      clickToDeleteTask() {
+         this.$store.dispatch('deleteTask', clone(this.task))
+
+         this.$store.dispatch('setTodo')
+
+         this.$store.dispatch('setRevertTodo')
+
+         this.show = !this.show
+      },
+
       checkTask() {
          this.$store.dispatch('markTask', clone(this.task))
+
          this.$store.dispatch('setTodo')
+
          this.$store.dispatch('setRevertTodo')
       },
 
@@ -56,7 +73,7 @@ export default {
       },
    },
    components: {
-      EditDeleteTaskWindow,
+      WarningModal
    },
 }
 </script>

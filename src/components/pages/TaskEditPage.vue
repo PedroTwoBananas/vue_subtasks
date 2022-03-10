@@ -1,6 +1,6 @@
 <template>
    <div class="edit-page-block">
-      <div class='edit-page-wrapper'>
+      <div class="edit-page-wrapper">
          <EditHeader :todo="getStoreTodo" />
          <EditList :tasks="getStoreTodo.tasks" />
       </div>

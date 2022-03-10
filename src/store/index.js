@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { clone } from '@/components/functions/clone'
 
 export const store = createStore({
    state() {
@@ -73,11 +74,11 @@ export const store = createStore({
 
       CANSEL_EDITION: (state, payload) => {
          const todo = state.todos.find((todo) => todo.id === payload.id)
-         state.todo = JSON.parse(JSON.stringify(todo))
+         state.todo = clone(todo)
       },
 
       REVERT_EDITION: (state) => {
-         state.todo = JSON.parse(JSON.stringify(state.revertTodo))
+         state.todo = clone(state.revertTodo)
       },
 
       ADD_TASK: (state, payload) => {

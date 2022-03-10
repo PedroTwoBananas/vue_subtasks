@@ -1,6 +1,4 @@
 <template>
-   <EditDeleteTodoWindow @closeWarningModal='closeWarningModal' :todo='todo' :showWarning='showWarning'/>
-   <EditCanselChangesWindow @closeCanselModal='closeCanselModal' :todo='todo'  :showCansel='showCansel'/>
    <div class="header-block">
       <div class="header-title-block">
          <span>{{ todo.name }}</span>
@@ -31,19 +29,30 @@
             </button>
          </div>
       </div>
+      <teleport to="body" v-if="showWarning">
+         <WarningModal
+            @cancel="closeWarningModal"
+            @confirm="clickToDeleteTodo"
+         />
+      </teleport>
+      <teleport to="body" v-if="showCansel">
+         <WarningModal
+            @cancel="closeCanselModal"
+            @confirm="clickToCanselEdition"
+         />
+      </teleport>
    </div>
 </template>
 
 <script>
 import uniqid from 'uniqid'
-// import { clone } from '@/components/functions/clone'
-import EditDeleteTodoWindow from '@/components/pageEditTask/EditDeleteTodoWindow'
-import EditCanselChangesWindow from '@/components/pageEditTask/EditCanselChangesWindow'
+import WarningModal from '@/components/WarningModal'
+import { clone } from '@/components/functions/clone'
 
 export default {
    components: {
-      EditCanselChangesWindow,
-      EditDeleteTodoWindow },
+      WarningModal,
+   },
    props: {
       todo: {
          type: Object,
@@ -84,38 +93,50 @@ export default {
 
       showWarningModal() {
          this.showWarning = !this.showWarning
-
       },
 
-      closeWarningModal(showWarning) {
-         this.showWarning = !showWarning
+      closeWarningModal() {
+         this.showWarning = !this.showWarning
+      },
+
+      clickToDeleteTodo() {
+         this.$store.dispatch('deleteTodo', this.todo)
+
+         this.$store.dispatch('setTodos')
+
+         localStorage.removeItem('todo')
+
+         localStorage.removeItem('revertTodo')
+
+         this.showWarning = !this.showWarning
+
+         this.$router.push({ name: 'home' })
       },
 
       showCanselModal() {
          this.showCansel = !this.showCansel
-
       },
 
-      closeCanselModal(showCansel) {
-         this.showCansel = !showCansel
+      closeCanselModal() {
+         this.showCansel = !this.showCansel
       },
 
-      // clickToCanselEdition() {
-      //    this.$store.dispatch('canselEdition', clone(this.todo))
-      //
-      //    this.$store.dispatch('setTodo')
-      //
-      //    this.$store.dispatch('setRevertTodo')
-      // },
+      clickToCanselEdition() {
+         this.$store.dispatch('canselEdition', clone(this.todo))
+
+         this.$store.dispatch('setTodo')
+
+         this.$store.dispatch('setRevertTodo')
+
+         this.showCansel = !this.showCansel
+      },
 
       clickToRevertEdition() {
-
          this.$store.dispatch('revertEdition')
 
          this.$store.dispatch('setRevertTodo')
 
          this.$store.dispatch('setTodo')
-
       },
 
       clickToAddTask() {

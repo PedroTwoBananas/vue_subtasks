@@ -23,6 +23,7 @@ export default {
       showAddModal() {
          this.show = !this.show
       },
+
       closeAddModal(show) {
          this.show = !show
       },

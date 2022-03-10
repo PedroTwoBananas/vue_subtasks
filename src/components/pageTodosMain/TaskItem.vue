@@ -1,6 +1,6 @@
 <template>
-   <div class='item'>
-      <input disabled v-if='!task.isDone' type='checkbox' >
+   <div class="item">
+      <input disabled v-if="!task.isDone" type="checkbox" />
       <span>{{ task.text }}</span>
    </div>
 </template>

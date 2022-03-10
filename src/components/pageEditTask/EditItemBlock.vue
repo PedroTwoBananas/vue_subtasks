@@ -1,7 +1,7 @@
 <template>
-   <div class='item-block'>
-      <EditItem @changeTask='changeTask' :isEdit='isEdit' :task="task" />
-      <EditInputItem @confirmTask ='editTask' :isEdit='isEdit' :task="task" />
+   <div class="item-block">
+      <EditItem @changeTask="changeTask" :isEdit="isEdit" :task="task" />
+      <EditInputItem @confirmTask="editTask" :isEdit="isEdit" :task="task" />
    </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 
       editTask(isEdit) {
          this.isEdit = !isEdit
-      }
+      },
    },
    components: { EditInputItem, EditItem },
 }

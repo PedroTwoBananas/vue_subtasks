@@ -1,26 +1,15 @@
 <template>
    <div class="main-todo">
-      <TaskHeader
-         @showDeleteModal="showDeleteModal"
-         :show="show"
-         :todo="todo"
-      />
-      <DeleteTodoWindow :todo="todo" @closeDeleteModal="closeDeleteModal" :show="show" />
+      <TaskHeader :todo="todo" />
       <TaskList :tasks="todo.tasks" />
    </div>
 </template>
 
 <script>
-import DeleteTodoWindow from '@/components/pageTodosMain/DeleteTodoWindow'
 import TaskHeader from '@/components/pageTodosMain/TaskHeader'
 import TaskList from '@/components/pageTodosMain/TaskList'
 
 export default {
-   data() {
-      return {
-         show: false,
-      }
-   },
    props: {
       todo: {
          type: Object,
@@ -29,17 +18,24 @@ export default {
    },
 
    methods: {
-      showDeleteModal(show) {
-         this.show = !show
+      showDeleteModal() {
+         this.show = !this.show
       },
-      closeDeleteModal(show) {
-         this.show = !show
+      closeDeleteModal() {
+         this.show = !this.show
+      },
+
+      clickToDeleteTodo() {
+         this.$store.dispatch('deleteTodo', this.todo)
+         localStorage.setItem(
+            'todos',
+            JSON.stringify(this.$store.getters.storeTodos)
+         )
       },
    },
    components: {
       TaskHeader,
       TaskList,
-      DeleteTodoWindow,
    },
 }
 </script>
