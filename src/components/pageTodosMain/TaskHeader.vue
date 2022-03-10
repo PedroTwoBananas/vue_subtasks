@@ -12,7 +12,7 @@
       <teleport to="body" v-if="show">
          <WarningModal
             @cancel="closeDeleteModal"
-            @confirm='clickToDeleteTodo'
+            @confirm="clickToDeleteTodo"
          />
       </teleport>
    </div>
@@ -28,7 +28,6 @@ export default {
          type: Object,
          required: true,
       },
-
    },
 
    data() {
@@ -41,16 +40,15 @@ export default {
       showDeleteModal() {
          this.show = !this.show
       },
+
       closeDeleteModal() {
          this.show = !this.show
       },
 
       clickToDeleteTodo() {
          this.$store.dispatch('deleteTodo', this.todo)
-         localStorage.setItem(
-            'todos',
-            JSON.stringify(this.$store.getters.storeTodos)
-         )
+
+         this.$store.dispatch('setTodos')
       },
 
       clickToChangeTodo() {

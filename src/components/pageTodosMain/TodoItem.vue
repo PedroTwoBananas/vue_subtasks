@@ -17,22 +17,6 @@ export default {
       },
    },
 
-   methods: {
-      showDeleteModal() {
-         this.show = !this.show
-      },
-      closeDeleteModal() {
-         this.show = !this.show
-      },
-
-      clickToDeleteTodo() {
-         this.$store.dispatch('deleteTodo', this.todo)
-         localStorage.setItem(
-            'todos',
-            JSON.stringify(this.$store.getters.storeTodos)
-         )
-      },
-   },
    components: {
       TaskHeader,
       TaskList,
