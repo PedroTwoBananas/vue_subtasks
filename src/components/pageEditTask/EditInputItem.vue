@@ -1,6 +1,6 @@
 <template>
    <div class="edit-item" v-if="isEdit">
-      <input type="text" v-model="editedText" />
+      <input @keyup.enter="editTask" type="text" v-model="editedText" />
       <button @click="editTask"><span>Изменить</span></button>
    </div>
 </template>

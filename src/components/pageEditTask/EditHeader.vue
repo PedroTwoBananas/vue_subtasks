@@ -11,6 +11,7 @@
          </div>
          <div class="header-input-block">
             <input
+               @keyup.enter='clickToAddTask'
                class="header-input"
                type="text"
                placeholder="Введите задачу"

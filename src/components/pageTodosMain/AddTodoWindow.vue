@@ -3,12 +3,14 @@
       <div class="modal-content">
          <div class="input-block">
             <input
+               @keyup.enter='addTodo'
                class="input"
                type="text"
                v-model="todo.name"
                placeholder="Введите название темы"
             />
             <input
+               @keyup.enter='addTask'
                class="input"
                type="text"
                v-model="task.text"
