@@ -12,6 +12,7 @@ export default {
          type: Object,
          required: true,
       },
+      
       isEdit: {
          type: Boolean,
          required: true,
@@ -30,11 +31,8 @@ export default {
             id: this.task.id,
             text: this.editedText,
          }
-         this.$store.dispatch('editTask', editedTask)
 
-         this.$store.dispatch('setTodo')
-
-         this.$store.dispatch('setRevertTodo')
+         this.$emit('editTask', editedTask)
 
          this.$emit('confirmTask', this.isEdit)
 

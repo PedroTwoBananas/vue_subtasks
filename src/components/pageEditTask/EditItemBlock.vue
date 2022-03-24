@@ -1,7 +1,18 @@
 <template>
    <div class="item-block">
-      <EditItem @changeTask="changeTask" :isEdit="isEdit" :task="task" />
-      <EditInputItem @confirmTask="editTask" :isEdit="isEdit" :task="task" />
+      <EditItem
+         @markTask="markTask"
+         @deleteTask="deleteTask"
+         @changeTask="changeTask"
+         :isEdit="isEdit"
+         :task="task"
+      />
+      <EditInputItem
+         @editTask="editTask"
+         @confirmTask="confirmTask"
+         :isEdit="isEdit"
+         :task="task"
+      />
    </div>
 </template>
 
@@ -23,11 +34,23 @@ export default {
    },
 
    methods: {
+      deleteTask(id) {
+         this.$emit('deleteTask', id)
+      },
+
+      markTask(id) {
+         this.$emit('markTask', id)
+      },
+
       changeTask(isEdit) {
          this.isEdit = !isEdit
       },
 
-      editTask(isEdit) {
+      editTask(text) {
+         this.$emit('editTask', text)
+      },
+
+      confirmTask(isEdit) {
          this.isEdit = !isEdit
       },
    },

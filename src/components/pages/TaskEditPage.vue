@@ -1,8 +1,18 @@
 <template>
    <div class="edit-page-block">
       <div class="edit-page-wrapper">
-         <EditHeader :todo="getStoreTodo" />
-         <EditList :tasks="getStoreTodo.tasks" />
+         <EditHeader
+            @cancelEdition="cancelEdition"
+            @revertEdition="revertEdition"
+            @addTask="addTask"
+            :todo="todo"
+         />
+         <EditList
+            @editTask="editTask"
+            @markTask="markTask"
+            @deleteTask="deleteTask"
+            :tasks="todo.tasks"
+         />
       </div>
    </div>
 </template>
@@ -10,14 +20,52 @@
 <script>
 import EditList from '@/components/pageEditTask/EditList'
 import EditHeader from '@/components/pageEditTask/EditHeader'
-
+import { clone } from '@/components/functions/clone'
 export default {
-   computed: {
-      getStoreTodo() {
-         return this.$store.getters.storeTodo
+   data() {
+      return {
+         todo: clone(this.$store.state.todo),
+         revertTodo: clone(this.$store.state.todo),
+      }
+   },
+
+   methods: {
+      addTask(task) {
+         this.todo.tasks.push(task)
+         this.revertTodo = clone(this.todo)
       },
-      getStoreRevertTodo() {
-         return this.$store.getters.storeRevertTodo
+
+      deleteTask(id) {
+         this.todo.tasks = this.todo.tasks.filter((todo) => todo.id !== id)
+         this.revertTodo = clone(this.todo)
+      },
+
+      markTask(id) {
+         this.todo.tasks = this.todo.tasks.map((key) => {
+            if (key.id === id) {
+               key.isDone = true
+            }
+            return key
+         })
+         this.revertTodo = clone(this.todo)
+      },
+
+      editTask(text) {
+         this.todo.tasks = this.todo.tasks.map((key) => {
+            if (key.id === text.id) {
+               key.text = text.text
+            }
+            return key
+         })
+         this.revertTodo = clone(this.todo)
+      },
+
+      cancelEdition() {
+         this.todo = clone(this.$store.state.todo)
+      },
+
+      revertEdition() {
+         this.todo = clone(this.revertTodo)
       },
    },
 

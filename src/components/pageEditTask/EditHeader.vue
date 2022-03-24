@@ -3,52 +3,49 @@
       <div class="header-title-block">
          <span>{{ todo.name }}</span>
          <div class="header-button-block">
-            <button @click="clickToConfirmChanges">
+            <button @click="confirmTodo">
                <span>Сохранить</span>
             </button>
-            <button @click="showWarningModal"><span>Удалить</span></button>
+            <button @click="toggleWarningModal"><span>Удалить</span></button>
             <button @click="goToMain"><span>Назад</span></button>
          </div>
          <div class="header-input-block">
             <input
-               @keyup.enter='clickToAddTask'
+               @keyup.enter="addTask"
                class="header-input"
                type="text"
                placeholder="Введите задачу"
                v-model="task.text"
             />
-            <button @click="clickToAddTask">
+            <button @click="addTask">
                <span>Добавить задачу</span>
             </button>
          </div>
          <div class="header-button-block">
-            <button @click="showCanselModal">
+            <button @click="toggleCancelModal">
                <span>Отмена редактирования</span>
             </button>
-            <button @click="clickToRevertEdition">
+            <button @click="revertEdition">
                <span>Вернуть редактирования</span>
             </button>
          </div>
       </div>
-      <teleport to="body" v-if="showWarning">
-         <WarningModal
-            @cancel="closeWarningModal"
-            @confirm="clickToDeleteTodo"
-         />
-      </teleport>
-      <teleport to="body" v-if="showCansel">
-         <WarningModal
-            @cancel="closeCanselModal"
-            @confirm="clickToCanselEdition"
-         />
-      </teleport>
+      <WarningModal
+         v-if="showWarning"
+         @cancel="toggleWarningModal"
+         @confirm="deleteTodo"
+      />
+      <WarningModal
+         v-if="showCancel"
+         @cancel="toggleCancelModal"
+         @confirm="cancelEdition"
+      />
    </div>
 </template>
 
 <script>
 import uniqid from 'uniqid'
 import WarningModal from '@/components/WarningModal'
-import { clone } from '@/components/functions/clone'
 
 export default {
    components: {
@@ -64,7 +61,7 @@ export default {
    data() {
       return {
          showWarning: false,
-         showCansel: false,
+         showCancel: false,
          task: {
             text: '',
          },
@@ -72,87 +69,45 @@ export default {
    },
 
    methods: {
-      clickToConfirmChanges() {
-         this.$store.dispatch('confirmTodo', this.todo)
-
-         this.$store.dispatch('setTodos')
-
-         localStorage.removeItem('todo')
-
-         localStorage.removeItem('revertTodo')
-
-         this.$router.push({ name: 'home' })
-      },
-
       goToMain() {
          this.$router.push({ name: 'home' })
-
-         localStorage.removeItem('todo')
-
-         localStorage.removeItem('revertTodo')
       },
 
-      showWarningModal() {
+      confirmTodo() {
+         this.$store.dispatch('confirmTodo', this.todo)
+         this.goToMain()
+      },
+
+      toggleWarningModal() {
          this.showWarning = !this.showWarning
       },
 
-      closeWarningModal() {
-         this.showWarning = !this.showWarning
-      },
-
-      clickToDeleteTodo() {
+      deleteTodo() {
          this.$store.dispatch('deleteTodo', this.todo)
-
-         this.$store.dispatch('setTodos')
-
-         localStorage.removeItem('todo')
-
-         localStorage.removeItem('revertTodo')
-
-         this.showWarning = !this.showWarning
-
-         this.$router.push({ name: 'home' })
+         this.toggleWarningModal()
+         this.goToMain()
       },
 
-      showCanselModal() {
-         this.showCansel = !this.showCansel
+      toggleCancelModal() {
+         this.showCancel = !this.showCancel
       },
 
-      closeCanselModal() {
-         this.showCansel = !this.showCansel
+      cancelEdition() {
+         this.$emit('cancelEdition')
+         this.toggleCancelModal()
       },
 
-      clickToCanselEdition() {
-         this.$store.dispatch('canselEdition', clone(this.todo))
-
-         this.$store.dispatch('setTodo')
-
-         this.$store.dispatch('setRevertTodo')
-
-         this.showCansel = !this.showCansel
+      revertEdition() {
+         this.$emit('revertEdition')
       },
 
-      clickToRevertEdition() {
-         this.$store.dispatch('revertEdition')
-
-         this.$store.dispatch('setRevertTodo')
-
-         this.$store.dispatch('setTodo')
-      },
-
-      clickToAddTask() {
+      addTask() {
          const task = {
             id: uniqid(),
             isDone: false,
             text: this.task.text,
          }
-
-         this.$store.dispatch('addTask', task)
-
-         this.$store.dispatch('setTodo')
-
-         this.$store.dispatch('setRevertTodo')
-
+         this.$emit('addTask', task)
          this.task = {
             text: '',
          }

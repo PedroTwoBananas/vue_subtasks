@@ -1,5 +1,12 @@
 <template>
-   <EditItemBlock :key="task.id" v-for="task in tasks" :task="task" />
+   <EditItemBlock
+      @editTask="editTask"
+      @markTask="markTask"
+      @deleteTask="deleteTask"
+      :key="task.id"
+      v-for="task in tasks"
+      :task="task"
+   />
 </template>
 
 <script>
@@ -8,6 +15,18 @@ export default {
    props: {
       tasks: {
          type: Array,
+      },
+   },
+
+   methods: {
+      deleteTask(id) {
+         this.$emit('deleteTask', id)
+      },
+      markTask(id) {
+         this.$emit('markTask', id)
+      },
+      editTask(text) {
+         this.$emit('editTask', text)
       },
    },
 

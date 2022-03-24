@@ -2,19 +2,18 @@
    <div class="header-block">
       <span>{{ todo.name }}</span>
       <div class="button-block">
-         <button class="button" @click="clickToChangeTodo">
+         <button class="button" @click="changeTodo">
             <span>Изменить</span>
          </button>
-         <button class="button" @click="showDeleteModal">
+         <button class="button" @click="toggleDeleteModal">
             <span>Удалить</span>
          </button>
       </div>
-      <teleport to="body" v-if="show">
-         <WarningModal
-            @cancel="closeDeleteModal"
-            @confirm="clickToDeleteTodo"
-         />
-      </teleport>
+      <WarningModal
+         v-if="show"
+         @cancel="toggleDeleteModal"
+         @confirm="deleteTodo"
+      />
    </div>
 </template>
 
@@ -37,26 +36,16 @@ export default {
    },
 
    methods: {
-      showDeleteModal() {
+      toggleDeleteModal() {
          this.show = !this.show
       },
 
-      closeDeleteModal() {
-         this.show = !this.show
-      },
-
-      clickToDeleteTodo() {
+      deleteTodo() {
          this.$store.dispatch('deleteTodo', this.todo)
-
-         this.$store.dispatch('setTodos')
       },
 
-      clickToChangeTodo() {
+      changeTodo() {
          this.$store.dispatch('selectTodo', clone(this.todo))
-
-         this.$store.dispatch('setTodo')
-
-         this.$store.dispatch('setRevertTodo')
 
          this.$router.push({ name: 'editPage', params: { id: this.todo.id } })
       },

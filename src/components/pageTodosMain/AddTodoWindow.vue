@@ -3,14 +3,14 @@
       <div class="modal-content">
          <div class="input-block">
             <input
-               @keyup.enter='addTodo'
+               @keyup.enter="addTodo"
                class="input"
                type="text"
                v-model="todo.name"
                placeholder="Введите название темы"
             />
             <input
-               @keyup.enter='addTask'
+               @keyup.enter="addTask"
                class="input"
                type="text"
                v-model="task.text"
@@ -76,14 +76,12 @@ export default {
 
          this.$store.dispatch('addTodo', this.todo)
 
-         this.$store.dispatch('setTodos')
-
          this.todo = {
             name: '',
             tasks: [],
          }
 
-         this.$emit('closeModal', this.show)
+         this.clickToCloseModal()
       },
    },
 }

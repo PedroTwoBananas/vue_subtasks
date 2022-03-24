@@ -1,7 +1,7 @@
 <template>
    <div class="item-block" v-if="!isEdit">
       <div class="item-text-block">
-         <input v-if="!task.isDone" type="checkbox" @change="checkTask" />
+         <input v-if="!task.isDone" type="checkbox" @change="markTask" />
          <span>{{ task.text }}</span>
       </div>
       <div class="item-button-block">
@@ -9,8 +9,9 @@
          <button @click="changeTask">Изменить задачу</button>
       </div>
 
-      <teleport to="body" v-if="show">
+      <teleport to="body">
          <WarningModal
+            v-if="show"
             @cancel="closeDeleteModal"
             @confirm="clickToDeleteTask"
          />
@@ -20,7 +21,6 @@
 
 <script>
 import WarningModal from '@/components/WarningModal'
-import { clone } from '@/components/functions/clone'
 
 export default {
    props: {
@@ -51,21 +51,12 @@ export default {
       },
 
       clickToDeleteTask() {
-         this.$store.dispatch('deleteTask', clone(this.task))
-
-         this.$store.dispatch('setTodo')
-
-         this.$store.dispatch('setRevertTodo')
-
+         this.$emit('deleteTask', this.task.id)
          this.show = !this.show
       },
 
-      checkTask() {
-         this.$store.dispatch('markTask', clone(this.task))
-
-         this.$store.dispatch('setTodo')
-
-         this.$store.dispatch('setRevertTodo')
+      markTask() {
+         this.$emit('markTask', this.task.id)
       },
 
       changeTask() {
@@ -73,7 +64,7 @@ export default {
       },
    },
    components: {
-      WarningModal
+      WarningModal,
    },
 }
 </script>
