@@ -21,6 +21,7 @@
 import EditList from '@/components/pageEditTask/EditList'
 import EditHeader from '@/components/pageEditTask/EditHeader'
 import { clone } from '@/components/functions/clone'
+
 export default {
    data() {
       return {
@@ -29,7 +30,16 @@ export default {
       }
    },
 
+   mounted() {
+      this.$store.dispatch('setTodo').then(this.setTodo())
+   },
+
    methods: {
+      setTodo() {
+         this.todo = clone(this.$store.state.todo)
+         this.revertTodo = clone(this.$store.state.todo)
+      },
+
       addTask(task) {
          this.todo.tasks.push(task)
          this.revertTodo = clone(this.todo)

@@ -1,5 +1,5 @@
 <template>
-   <div class="modal" v-if="show">
+   <div class="modal">
       <div class="modal-content">
          <div class="input-block">
             <input
@@ -25,7 +25,7 @@
          <div class="button-block">
             <button class="button" @click="addTask">Добавить задачу</button>
             <button class="button" @click="addTodo">Добавить тему</button>
-            <button class="button" @click="clickToCloseModal">Закрыть</button>
+            <button class="button" @click="closeModal">Закрыть</button>
          </div>
       </div>
    </div>
@@ -47,16 +47,9 @@ export default {
       }
    },
 
-   props: {
-      show: {
-         type: Boolean,
-         required: true,
-      },
-   },
-
    methods: {
-      clickToCloseModal() {
-         this.$emit('closeModal', this.show)
+      closeModal() {
+         this.$emit('closeModal')
       },
 
       addTask() {
@@ -81,7 +74,7 @@ export default {
             tasks: [],
          }
 
-         this.clickToCloseModal()
+         this.closeModal()
       },
    },
 }

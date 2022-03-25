@@ -1,21 +1,18 @@
 <template>
-   <div class="item-block" v-if="!isEdit">
+   <div class="item-block">
       <div class="item-text-block">
          <input v-if="!task.isDone" type="checkbox" @change="markTask" />
          <span>{{ task.text }}</span>
       </div>
       <div class="item-button-block">
-         <button @click="showDeleteModal">Удалить задачу</button>
+         <button @click="toggleDeleteModal">Удалить задачу</button>
          <button @click="changeTask">Изменить задачу</button>
       </div>
-
-      <teleport to="body">
-         <WarningModal
-            v-if="show"
-            @cancel="closeDeleteModal"
-            @confirm="clickToDeleteTask"
-         />
-      </teleport>
+      <WarningModal
+         v-if="show"
+         @cancel="toggleDeleteModal"
+         @confirm="deleteTask"
+      />
    </div>
 </template>
 
@@ -42,17 +39,13 @@ export default {
    },
 
    methods: {
-      showDeleteModal() {
+      toggleDeleteModal() {
          this.show = !this.show
       },
 
-      closeDeleteModal() {
-         this.show = !this.show
-      },
-
-      clickToDeleteTask() {
+      deleteTask() {
          this.$emit('deleteTask', this.task.id)
-         this.show = !this.show
+         this.toggleDeleteModal()
       },
 
       markTask() {
@@ -60,7 +53,7 @@ export default {
       },
 
       changeTask() {
-         this.$emit('changeTask', this.isEdit)
+         this.$emit('changeTask')
       },
    },
    components: {

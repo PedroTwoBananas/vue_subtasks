@@ -1,15 +1,17 @@
 <template>
    <div class="item-block">
       <EditItem
+         v-if="!isEdit"
          @markTask="markTask"
          @deleteTask="deleteTask"
-         @changeTask="changeTask"
+         @changeTask="toggleItems"
          :isEdit="isEdit"
          :task="task"
       />
       <EditInputItem
+         v-if="isEdit"
+         @changeTask="toggleItems"
          @editTask="editTask"
-         @confirmTask="confirmTask"
          :isEdit="isEdit"
          :task="task"
       />
@@ -42,16 +44,12 @@ export default {
          this.$emit('markTask', id)
       },
 
-      changeTask(isEdit) {
-         this.isEdit = !isEdit
-      },
-
       editTask(text) {
          this.$emit('editTask', text)
       },
 
-      confirmTask(isEdit) {
-         this.isEdit = !isEdit
+      toggleItems() {
+         this.isEdit = !this.isEdit
       },
    },
    components: { EditInputItem, EditItem },

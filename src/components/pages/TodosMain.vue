@@ -1,9 +1,9 @@
 <template>
    <div class="main-wrapper">
-      <button @click="showAddModal" class="add-button">
+      <button @click="toggleAddModal" class="add-button">
          <span>Добавить тему</span>
       </button>
-      <AddTodoWindow @closeModal="closeAddModal" :show="show" />
+      <AddTodoWindow v-if="show" @closeModal="toggleAddModal" />
       <MainList />
    </div>
 </template>
@@ -20,13 +20,13 @@ export default {
    },
 
    methods: {
-      showAddModal() {
+      toggleAddModal() {
          this.show = !this.show
       },
+   },
 
-      closeAddModal(show) {
-         this.show = !show
-      },
+   mounted() {
+      this.$store.dispatch('setTodos')
    },
    components: {
       MainList,

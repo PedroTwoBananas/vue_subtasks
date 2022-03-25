@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { clone } from '@/components/functions/clone'
 import WarningModal from '@/components/WarningModal'
 
 export default {
@@ -42,11 +41,11 @@ export default {
 
       deleteTodo() {
          this.$store.dispatch('deleteTodo', this.todo)
+         this.toggleDeleteModal()
       },
 
       changeTodo() {
-         this.$store.dispatch('selectTodo', clone(this.todo))
-
+         this.$store.dispatch('selectTodo', this.todo)
          this.$router.push({ name: 'editPage', params: { id: this.todo.id } })
       },
    },

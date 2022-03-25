@@ -1,5 +1,5 @@
 <template>
-   <div class="edit-item" v-if="isEdit">
+   <div class="edit-item">
       <input @keyup.enter="editTask" type="text" v-model="editedText" />
       <button @click="editTask"><span>Изменить</span></button>
    </div>
@@ -12,7 +12,7 @@ export default {
          type: Object,
          required: true,
       },
-      
+
       isEdit: {
          type: Boolean,
          required: true,
@@ -34,7 +34,7 @@ export default {
 
          this.$emit('editTask', editedTask)
 
-         this.$emit('confirmTask', this.isEdit)
+         this.$emit('changeTask')
 
          this.editedText = ''
       },
