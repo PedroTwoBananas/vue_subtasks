@@ -3,14 +3,14 @@
       <button @click="toggleAddModal" class="add-button">
          <span>Добавить тему</span>
       </button>
-      <AddTodoWindow v-if="show" @closeModal="toggleAddModal" />
-      <MainList />
+      <AddTodoModal v-if="show" @closeModal="toggleAddModal" />
+      <TodosList />
    </div>
 </template>
 
 <script>
-import AddTodoWindow from '@/components/pageTodosMain/AddTodoWindow'
-import MainList from '@/components/pageTodosMain/MainList'
+import AddTodoModal from '@/components/pageTodosMain/AddTodoModal'
+import TodosList from '@/components/pageTodosMain/TodosList'
 
 export default {
    data() {
@@ -29,8 +29,8 @@ export default {
       this.$store.dispatch('setTodos')
    },
    components: {
-      MainList,
-      AddTodoWindow,
+      TodosList,
+      AddTodoModal,
    },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-   <EditItemBlock
+   <ItemEditingBlock
       @editTask="editTask"
       @markTask="markTask"
       @deleteTask="deleteTask"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import EditItemBlock from '@/components/pageEditTask/EditItemBlock'
+import ItemEditingBlock from '@/components/pageEditTask/ItemEditingBlock'
 export default {
    props: {
       tasks: {
@@ -31,7 +31,7 @@ export default {
    },
 
    components: {
-      EditItemBlock,
+      ItemEditingBlock,
    },
 }
 </script>

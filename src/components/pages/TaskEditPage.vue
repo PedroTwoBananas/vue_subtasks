@@ -1,13 +1,13 @@
 <template>
    <div class="edit-page-block">
       <div class="edit-page-wrapper">
-         <EditHeader
+         <EditForm
             @cancelEdition="cancelEdition"
             @revertEdition="revertEdition"
             @addTask="addTask"
             :todo="todo"
          />
-         <EditList
+         <TaskEditingList
             @editTask="editTask"
             @markTask="markTask"
             @deleteTask="deleteTask"
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import EditList from '@/components/pageEditTask/EditList'
-import EditHeader from '@/components/pageEditTask/EditHeader'
+import TaskEditingList from '@/components/pageEditTask/TaskEditingList'
+import EditForm from '@/components/pageEditTask/EditForm'
 import { clone } from '@/components/functions/clone'
 
 export default {
@@ -80,8 +80,8 @@ export default {
    },
 
    components: {
-      EditHeader,
-      EditList,
+      EditForm,
+      TaskEditingList,
    },
 }
 </script>

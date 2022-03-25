@@ -1,11 +1,11 @@
 <template>
    <div class="main-list">
-      <TodoItem :key="todo.id" v-for="todo in this.todos" :todo="todo" />
+      <TodosItem :key="todo.id" v-for="todo in this.todos" :todo="todo" />
    </div>
 </template>
 
 <script>
-import TodoItem from '@/components/pageTodosMain/TodoItem'
+import TodosItem from '@/components/pageTodosMain/TodosItem'
 
 export default {
    computed: {
@@ -14,7 +14,7 @@ export default {
       },
    },
    components: {
-      TodoItem,
+      TodosItem,
    },
 }
 </script>
